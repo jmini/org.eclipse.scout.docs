@@ -54,12 +54,12 @@ public class ServerForm extends AbstractForm {
     return TEXTS.get("Server");
   }
 
-  public CancelButton getCancelButton() {
-    return getFieldByClass(CancelButton.class);
+  public void startModify() throws ProcessingException {
+    startInternal(new ModifyHandler());
   }
 
-  public RandomButton getRandomButton() {
-    return getFieldByClass(RandomButton.class);
+  public CancelButton getCancelButton() {
+    return getFieldByClass(CancelButton.class);
   }
 
   public ContainerBox getContainerBox() {
@@ -78,12 +78,12 @@ public class ServerForm extends AbstractForm {
     return getFieldByClass(OkButton.class);
   }
 
-  public TableField getTableField() {
-    return getFieldByClass(TableField.class);
+  public RandomButton getRandomButton() {
+    return getFieldByClass(RandomButton.class);
   }
 
-  public void startModify() throws ProcessingException {
-    startInternal(new ModifyHandler());
+  public TableField getTableField() {
+    return getFieldByClass(TableField.class);
   }
 
   @Order(10.0)
@@ -133,14 +133,6 @@ public class ServerForm extends AbstractForm {
         @Order(10.0)
         public class Table extends AbstractTable {
 
-          public QuantityColumn getQuantityColumn() {
-            return getColumnSet().getColumnByClass(QuantityColumn.class);
-          }
-
-          public TypeColumn getTypeColumn() {
-            return getColumnSet().getColumnByClass(TypeColumn.class);
-          }
-
           public NameColumn getNameColumn() {
             return getColumnSet().getColumnByClass(NameColumn.class);
           }
@@ -149,23 +141,36 @@ public class ServerForm extends AbstractForm {
             return getColumnSet().getColumnByClass(PartColumn.class);
           }
 
+          public QuantityColumn getQuantityColumn() {
+            return getColumnSet().getColumnByClass(QuantityColumn.class);
+          }
+
+          public TypeColumn getTypeColumn() {
+            return getColumnSet().getColumnByClass(TypeColumn.class);
+          }
+
           @Order(10.0)
           public class PartColumn extends AbstractColumn<Part> {
+
+            @Override
+            protected boolean getConfiguredDisplayable() {
+              return false;
+            }
 
             @Override
             protected void execDecorateCell(Cell cell, ITableRow row) throws ProcessingException {
               Part part = getValue(row);
               row.setIconId(PartUtility.calculateSmallIconId(part));
             }
-
-            @Override
-            protected boolean getConfiguredDisplayable() {
-              return false;
-            }
           }
 
           @Order(20.0)
           public class TypeColumn extends AbstractStringColumn {
+
+            @Override
+            protected boolean getConfiguredAlwaysIncludeSortAtBegin() {
+              return true;
+            }
 
             @Override
             protected String getConfiguredHeaderText() {
@@ -175,11 +180,6 @@ public class ServerForm extends AbstractForm {
             @Override
             protected int getConfiguredSortIndex() {
               return 1;
-            }
-
-            @Override
-            protected boolean getConfiguredAlwaysIncludeSortAtBegin() {
-              return true;
             }
 
             @Override
@@ -206,13 +206,13 @@ public class ServerForm extends AbstractForm {
           public class QuantityColumn extends AbstractIntegerColumn {
 
             @Override
-            protected String getConfiguredHeaderText() {
-              return TEXTS.get("Quantity");
+            protected boolean getConfiguredEditable() {
+              return true;
             }
 
             @Override
-            protected boolean getConfiguredEditable() {
-              return true;
+            protected String getConfiguredHeaderText() {
+              return TEXTS.get("Quantity");
             }
 
             @Override

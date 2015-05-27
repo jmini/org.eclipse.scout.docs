@@ -70,20 +70,20 @@ public class FormPage extends AbstractPageWithNodes {
     }
   }
 
+  @Override
+  protected void execPageDeactivated() throws ProcessingException {
+    if (getDetailForm() != null) {
+      getDetailForm().doClose();
+      setDetailForm(null);
+    }
+  }
+
   protected IPageForm execCreateDetailForm() throws ProcessingException {
     try {
       return m_formType.newInstance();
     }
     catch (Exception e) {
       throw new ProcessingException("create " + m_formType, e);
-    }
-  }
-
-  @Override
-  protected void execPageDeactivated() throws ProcessingException {
-    if (getDetailForm() != null) {
-      getDetailForm().doClose();
-      setDetailForm(null);
     }
   }
 

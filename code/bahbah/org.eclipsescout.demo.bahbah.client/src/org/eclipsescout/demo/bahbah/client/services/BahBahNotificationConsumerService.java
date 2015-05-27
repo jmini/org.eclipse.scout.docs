@@ -13,11 +13,6 @@ package org.eclipsescout.demo.bahbah.client.services;
 import java.util.Date;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipsescout.demo.bahbah.client.ui.desktop.Desktop;
-import org.eclipsescout.demo.bahbah.client.ui.desktop.outlines.pages.UserNodePage;
-import org.eclipsescout.demo.bahbah.client.ui.forms.ChatForm;
-import org.eclipsescout.demo.bahbah.shared.notification.MessageNotification;
-import org.eclipsescout.demo.bahbah.shared.notification.RefreshBuddiesNotification;
 import org.eclipse.scout.commons.logger.IScoutLogger;
 import org.eclipse.scout.commons.logger.ScoutLogManager;
 import org.eclipse.scout.rt.client.ClientAsyncJob;
@@ -26,6 +21,11 @@ import org.eclipse.scout.rt.client.IClientSession;
 import org.eclipse.scout.rt.client.services.common.clientnotification.ClientNotificationConsumerEvent;
 import org.eclipse.scout.rt.shared.services.common.clientnotification.IClientNotification;
 import org.eclipse.scout.service.AbstractService;
+import org.eclipsescout.demo.bahbah.client.ui.desktop.Desktop;
+import org.eclipsescout.demo.bahbah.client.ui.desktop.outlines.pages.UserNodePage;
+import org.eclipsescout.demo.bahbah.client.ui.forms.ChatForm;
+import org.eclipsescout.demo.bahbah.shared.notification.MessageNotification;
+import org.eclipsescout.demo.bahbah.shared.notification.RefreshBuddiesNotification;
 
 public class BahBahNotificationConsumerService extends AbstractService implements IBahBahNotificationConsumerService {
   private static IScoutLogger logger = ScoutLogManager.getLogger(BahBahNotificationConsumerService.class);

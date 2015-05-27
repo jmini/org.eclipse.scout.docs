@@ -65,10 +65,6 @@ public class PageWithTableTablePage extends AbstractPageWithTable<PageWithTableT
   @Order(10.0)
   public class Table extends AbstractTable {
 
-    public SmartColumn getSmartColumn() {
-      return getColumnSet().getColumnByClass(SmartColumn.class);
-    }
-
     @Override
     protected boolean getConfiguredAutoResizeColumns() {
       return true;
@@ -92,6 +88,10 @@ public class PageWithTableTablePage extends AbstractPageWithTable<PageWithTableT
 
     public LongColumn getLongColumn() {
       return getColumnSet().getColumnByClass(LongColumn.class);
+    }
+
+    public SmartColumn getSmartColumn() {
+      return getColumnSet().getColumnByClass(SmartColumn.class);
     }
 
     public StringColumn getStringColumn() {

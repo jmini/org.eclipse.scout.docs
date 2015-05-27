@@ -40,13 +40,13 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
   }
 
   @Override
-  protected String getConfiguredTitle() {
-    return TEXTS.get("Buttons");
+  protected boolean getConfiguredCacheBounds() {
+    return true;
   }
 
   @Override
-  protected boolean getConfiguredCacheBounds() {
-    return true;
+  protected String getConfiguredTitle() {
+    return TEXTS.get("Buttons");
   }
 
   @Override
@@ -56,6 +56,16 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
     decorateButtonList(getFieldByClass(LinkButtonBox.class), "Link", IButton.DISPLAY_STYLE_LINK);
     decorateButtonList(getFieldByClass(RadioButtonBox.class), "Radio", IButton.DISPLAY_STYLE_RADIO);
     decorateCheckBoxList(getFieldByClass(CheckFieldBox.class), "Check");
+  }
+
+  @Override
+  public void startPageForm() throws ProcessingException {
+    startInternal(new PageFormHandler());
+  }
+
+  @Override
+  public AbstractCloseButton getCloseButton() throws ProcessingException {
+    return getFieldByClass(CloseButton.class);
   }
 
   private void decorateButtonList(ICompositeField box, String label, int displayStyle) {
@@ -127,15 +137,12 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
     }
   }
 
-  @Override
-  public void startPageForm() throws ProcessingException {
-    startInternal(new PageFormHandler());
-  }
-
   @Order(10)
   public class MainBox extends AbstractGroupBox {
+
     @Order(10)
     public class PushButtonBox extends AbstractGroupBox {
+
       @Override
       protected int getConfiguredGridColumnCount() {
         return 4;
@@ -143,6 +150,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(10)
       public class PushButton1 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -163,6 +171,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(20)
       public class PushButton2 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -171,6 +180,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(30)
       public class PushButton3 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -179,6 +189,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(40)
       public class PushButton4 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -188,6 +199,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
     @Order(20)
     public class ToggleButtonBox extends AbstractGroupBox {
+
       @Override
       protected int getConfiguredGridColumnCount() {
         return 4;
@@ -195,6 +207,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(10)
       public class ToggleButton1 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -203,6 +216,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(20)
       public class ToggleButton2 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -211,6 +225,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(30)
       public class ToggleButton3 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -219,6 +234,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(40)
       public class ToggleButton4 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -228,6 +244,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
     @Order(30)
     public class LinkButtonBox extends AbstractGroupBox {
+
       @Override
       protected int getConfiguredGridColumnCount() {
         return 4;
@@ -235,6 +252,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(10)
       public class LinkButton1 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -243,6 +261,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(20)
       public class LinkButton2 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -251,6 +270,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(30)
       public class LinkButton3 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -259,6 +279,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(40)
       public class LinkButton4 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -268,6 +289,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
     @Order(40)
     public class RadioButtonBox extends AbstractGroupBox {
+
       @Override
       protected int getConfiguredGridColumnCount() {
         return 4;
@@ -275,6 +297,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(10)
       public class RadioButton1 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -283,6 +306,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(20)
       public class RadioButton2 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -291,6 +315,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(30)
       public class RadioButton3 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -299,6 +324,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(40)
       public class RadioButton4 extends AbstractButton {
+
         @Override
         protected boolean getConfiguredProcessButton() {
           return false;
@@ -308,6 +334,7 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
     @Order(50)
     public class CheckFieldBox extends AbstractGroupBox {
+
       @Override
       protected int getConfiguredGridColumnCount() {
         return 4;
@@ -335,14 +362,15 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(40)
       public class VisibilityButton extends AbstractButton {
-        @Override
-        public String getConfiguredLabel() {
-          return "Set 'Button with menus' invisible/visible (10sec)";
-        }
 
         @Override
         public int getConfiguredDisplayStyle() {
           return DISPLAY_STYLE_DEFAULT;
+        }
+
+        @Override
+        public String getConfiguredLabel() {
+          return "Set 'Button with menus' invisible/visible (10sec)";
         }
 
         @Override
@@ -361,15 +389,6 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
 
       @Order(50)
       public class ButtonWithMenu extends AbstractButton {
-        @Override
-        protected String getConfiguredLabel() {
-          return "Button with menu";
-        }
-
-        @Override
-        protected void execClickAction() throws ProcessingException {
-          requestPopup();
-        }
 
         @Override
         public boolean getConfiguredEnabled() {
@@ -377,8 +396,18 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
         }
 
         @Override
+        protected String getConfiguredLabel() {
+          return "Button with menu";
+        }
+
+        @Override
         public boolean getConfiguredVisible() {
           return false;
+        }
+
+        @Override
+        protected void execClickAction() throws ProcessingException {
+          requestPopup();
         }
 
         @Order(10)
@@ -407,6 +436,11 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
       }
     }
 
+    @Order(200)
+    public class CloseButton extends AbstractCloseButton {
+
+    }
+
     @Order(10)
     public class KeyStroke extends AbstractKeyStroke {
       @Override
@@ -418,23 +452,12 @@ public class ButtonsForm extends AbstractForm implements IPageForm {
       protected void execAction() throws ProcessingException {
       }
     }
-
-    @Order(200)
-    public class CloseButton extends AbstractCloseButton {
-
-    }
-
   }
 
   public class PageFormHandler extends AbstractFormHandler {
+
     @Override
     protected void execLoad() throws ProcessingException {
     }
   }
-
-  @Override
-  public AbstractCloseButton getCloseButton() throws ProcessingException {
-    return getFieldByClass(CloseButton.class);
-  }
-
 }

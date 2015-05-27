@@ -75,6 +75,14 @@ public class NumberFieldsDecimalFieldsForm extends AbstractForm implements IPage
     return getFieldByClass(BigIntegerField.class);
   }
 
+  public Calculator0Box getCalculator0Box() {
+    return getFieldByClass(Calculator0Box.class);
+  }
+
+  public CalculatorBox getCalculatorBox() {
+    return getFieldByClass(CalculatorBox.class);
+  }
+
   @Override
   public CloseButton getCloseButton() {
     return getFieldByClass(CloseButton.class);
@@ -88,20 +96,20 @@ public class NumberFieldsDecimalFieldsForm extends AbstractForm implements IPage
     return getFieldByClass(DoubleField.class);
   }
 
-  public EqualsField getEqualsField() {
-    return getFieldByClass(EqualsField.class);
-  }
-
   public Equals0Field getEquals0Field() {
     return getFieldByClass(Equals0Field.class);
   }
 
-  public FirstValueField getFirstValueField() {
-    return getFieldByClass(FirstValueField.class);
+  public EqualsField getEqualsField() {
+    return getFieldByClass(EqualsField.class);
   }
 
   public FirstValue0Field getFirstValue0Field() {
     return getFieldByClass(FirstValue0Field.class);
+  }
+
+  public FirstValueField getFirstValueField() {
+    return getFieldByClass(FirstValueField.class);
   }
 
   public HighestValueButton getHighestValueButton() {
@@ -120,32 +128,24 @@ public class NumberFieldsDecimalFieldsForm extends AbstractForm implements IPage
     return getFieldByClass(MainBox.class);
   }
 
-  public CalculatorBox getCalculatorBox() {
-    return getFieldByClass(CalculatorBox.class);
-  }
-
-  public Calculator0Box getCalculator0Box() {
-    return getFieldByClass(Calculator0Box.class);
-  }
-
   public NumberFieldsBox getNumberFieldsBox() {
     return getFieldByClass(NumberFieldsBox.class);
-  }
-
-  public PlaceholderField getPlaceholderField() {
-    return getFieldByClass(PlaceholderField.class);
   }
 
   public Placeholder0Field getPlaceholder0Field() {
     return getFieldByClass(Placeholder0Field.class);
   }
 
-  public SecondValueField getSecondValueField() {
-    return getFieldByClass(SecondValueField.class);
+  public PlaceholderField getPlaceholderField() {
+    return getFieldByClass(PlaceholderField.class);
   }
 
   public SecondValue0Field getSecondValue0Field() {
     return getFieldByClass(SecondValue0Field.class);
+  }
+
+  public SecondValueField getSecondValueField() {
+    return getFieldByClass(SecondValueField.class);
   }
 
   public SmallestValueButton getSmallestValueButton() {
@@ -228,25 +228,20 @@ public class NumberFieldsDecimalFieldsForm extends AbstractForm implements IPage
           public class FirstValueField extends AbstractBigIntegerField {
 
             @Override
-            protected void execInitField() throws ProcessingException {
-              setValue(new BigInteger("2455781"));
-            }
-
-            @Override
             protected void execChangedValue() throws ProcessingException {
               if (getFirstValueField().getValue() != null && getSecondValueField().getValue() != null) {
                 getEqualsField().setValue(getFirstValueField().getValue().add(getSecondValueField().getValue()));
               }
             }
+
+            @Override
+            protected void execInitField() throws ProcessingException {
+              setValue(new BigInteger("2455781"));
+            }
           }
 
           @Order(30.0)
           public class SecondValueField extends AbstractBigIntegerField {
-
-            @Override
-            protected void execInitField() throws ProcessingException {
-              setValue(new BigInteger("478873"));
-            }
 
             @Override
             protected String getConfiguredLabel() {
@@ -259,19 +254,24 @@ public class NumberFieldsDecimalFieldsForm extends AbstractForm implements IPage
                 getEqualsField().setValue(getFirstValueField().getValue().add(getSecondValueField().getValue()));
               }
             }
+
+            @Override
+            protected void execInitField() throws ProcessingException {
+              setValue(new BigInteger("478873"));
+            }
           }
 
           @Order(40.0)
           public class EqualsField extends AbstractBigIntegerField {
 
             @Override
-            protected void execInitField() throws ProcessingException {
-              setValue(new BigInteger("6334654"));
+            protected String getConfiguredLabel() {
+              return TEXTS.get("LogicEQ");
             }
 
             @Override
-            protected String getConfiguredLabel() {
-              return TEXTS.get("LogicEQ");
+            protected void execInitField() throws ProcessingException {
+              setValue(new BigInteger("6334654"));
             }
           }
         }
@@ -391,13 +391,13 @@ public class NumberFieldsDecimalFieldsForm extends AbstractForm implements IPage
           public class Equals0Field extends AbstractBigDecimalField {
 
             @Override
-            protected void execInitField() throws ProcessingException {
-              setValue(new BigDecimal(64.267 + 55.534));
+            protected String getConfiguredLabel() {
+              return TEXTS.get("LogicEQ");
             }
 
             @Override
-            protected String getConfiguredLabel() {
-              return TEXTS.get("LogicEQ");
+            protected void execInitField() throws ProcessingException {
+              setValue(new BigDecimal(64.267 + 55.534));
             }
           }
         }

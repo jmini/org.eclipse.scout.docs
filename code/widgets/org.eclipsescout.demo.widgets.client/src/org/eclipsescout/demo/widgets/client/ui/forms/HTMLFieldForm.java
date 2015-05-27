@@ -185,6 +185,7 @@ public class HTMLFieldForm extends AbstractForm implements IPageForm {
 
     @Order(20.0)
     public class GroupBox extends AbstractGroupBox {
+
       @Order(30.0)
       public class BlankButton extends AbstractLinkButton {
 
@@ -197,6 +198,20 @@ public class HTMLFieldForm extends AbstractForm implements IPageForm {
         protected void execClickAction() throws ProcessingException {
           getHTMLField().setAttachments(null);
           getHTMLField().setValue(null);
+        }
+      }
+
+      @Order(40.0)
+      public class ScoutHtmlButton extends AbstractLinkButton {
+
+        @Override
+        protected String getConfiguredLabel() {
+          return TEXTS.get("ScoutHtml");
+        }
+
+        @Override
+        protected void execClickAction() throws ProcessingException {
+          loadFile("ScoutHtml.html");
         }
       }
 
@@ -215,20 +230,6 @@ public class HTMLFieldForm extends AbstractForm implements IPageForm {
           RemoteFile iconFile = new RemoteFile(clientBundle.getResource("/resources/icons/scout_logo.jpg"), true);
           attachments.add(iconFile);
           loadFile("HtmlFieldCustomHtml.html", attachments.toArray(new RemoteFile[attachments.size()]));
-        }
-      }
-
-      @Order(40.0)
-      public class ScoutHtmlButton extends AbstractLinkButton {
-
-        @Override
-        protected String getConfiguredLabel() {
-          return TEXTS.get("ScoutHtml");
-        }
-
-        @Override
-        protected void execClickAction() throws ProcessingException {
-          loadFile("ScoutHtml.html");
         }
       }
     }

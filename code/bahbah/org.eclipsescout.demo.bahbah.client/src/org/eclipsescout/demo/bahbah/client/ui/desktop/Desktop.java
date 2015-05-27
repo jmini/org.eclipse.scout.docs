@@ -117,18 +117,19 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
     }
 
     @Override
-    protected void execPrepareAction() throws ProcessingException {
-      setVisible(UserAgentUtility.isDesktopDevice());
+    protected void execAction() throws ProcessingException {
+      ClientSession.get().stopSession();
     }
 
     @Override
-    protected void execAction() throws ProcessingException {
-      ClientSession.get().stopSession();
+    protected void execPrepareAction() throws ProcessingException {
+      setVisible(UserAgentUtility.isDesktopDevice());
     }
   }
 
   @Order(10.0)
   public class ChatOutlineViewButton extends AbstractOutlineViewButton {
+
     public ChatOutlineViewButton() {
       super(Desktop.this, ChatOutline.class);
     }
@@ -141,6 +142,7 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
 
   @Order(20.0)
   public class AdministrationOutlineViewButton extends AbstractOutlineViewButton {
+
     public AdministrationOutlineViewButton() {
       super(Desktop.this, AdministrationOutline.class);
     }

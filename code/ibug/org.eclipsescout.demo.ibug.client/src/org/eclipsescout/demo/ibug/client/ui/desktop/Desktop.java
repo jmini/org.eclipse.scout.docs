@@ -36,13 +36,16 @@ import org.eclipsescout.demo.ibug.client.ui.forms.DesktopForm.MainBox.DesktopBox
 import org.eclipsescout.demo.ibug.shared.Icons;
 
 public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(Desktop.class);
 
   public Desktop() {
   }
 
   @Override
-  protected String getConfiguredTitle() {  return TEXTS.get("IBug");}
+  protected String getConfiguredTitle() {
+    return TEXTS.get("IBug");
+  }
 
   @Override
   protected void execOpened() throws ProcessingException {
@@ -108,6 +111,7 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
 
   @Order(25)
   public class BookmarkMenu extends AbstractBookmarkMenu {
+
     public BookmarkMenu() {
       super(Desktop.this);
     }

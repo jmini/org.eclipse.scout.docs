@@ -52,10 +52,6 @@ public class WSLogForm extends AbstractForm {
     return TEXTS.get("WSLog");
   }
 
-  public CancelButton getCancelButton() {
-    return getFieldByClass(CancelButton.class);
-  }
-
   @FormData
   public Long getWSLogNr() {
     return wSLogNr;
@@ -68,6 +64,10 @@ public class WSLogForm extends AbstractForm {
 
   public void startModify() throws ProcessingException {
     startInternal(new ModifyHandler());
+  }
+
+  public CancelButton getCancelButton() {
+    return getFieldByClass(CancelButton.class);
   }
 
   public DateField getDateField() {

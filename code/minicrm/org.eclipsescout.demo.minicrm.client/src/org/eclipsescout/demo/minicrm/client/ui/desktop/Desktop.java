@@ -33,6 +33,7 @@ import org.eclipsescout.demo.minicrm.client.ui.desktop.outlines.StandardOutline;
 import org.eclipsescout.demo.minicrm.shared.Icons;
 
 public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(Desktop.class);
 
   public Desktop() {
@@ -106,6 +107,7 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
 
   @Order(25)
   public class BookmarkMenu extends AbstractBookmarkMenu {
+
     public BookmarkMenu() {
       super(Desktop.this);
     }
@@ -136,6 +138,19 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
   }
 
   @Order(10.0)
+  public class StandardOutlineViewButton extends AbstractOutlineViewButton {
+
+    public StandardOutlineViewButton() {
+      super(Desktop.this, StandardOutline.class);
+    }
+
+    @Override
+    protected String getConfiguredText() {
+      return TEXTS.get("StandardOutline");
+    }
+  }
+
+  @Order(10.0)
   public class RefreshOutlineKeyStroke extends AbstractKeyStroke {
 
     @Override
@@ -151,18 +166,6 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
           page.reloadPage();
         }
       }
-    }
-  }
-
-  @Order(10.0)
-  public class StandardOutlineViewButton extends AbstractOutlineViewButton {
-    public StandardOutlineViewButton() {
-      super(Desktop.this, StandardOutline.class);
-    }
-
-    @Override
-    protected String getConfiguredText() {
-      return TEXTS.get("StandardOutline");
     }
   }
 }

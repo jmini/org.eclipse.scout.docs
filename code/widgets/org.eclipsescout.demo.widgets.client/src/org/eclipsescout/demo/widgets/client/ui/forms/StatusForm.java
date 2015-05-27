@@ -87,6 +87,10 @@ public class StatusForm extends AbstractForm implements IPageForm {
     return getFieldByClass(ERRORStatusButton.class);
   }
 
+  public FileChooserField getFileChooserField() {
+    return getFieldByClass(FileChooserField.class);
+  }
+
   public GroupBox getGroupBox() {
     return getFieldByClass(GroupBox.class);
   }
@@ -121,10 +125,6 @@ public class StatusForm extends AbstractForm implements IPageForm {
 
   public WARNINGStatusButton getWARNINGStatusButton() {
     return getFieldByClass(WARNINGStatusButton.class);
-  }
-
-  public FileChooserField getFileChooserField() {
-    return getFieldByClass(FileChooserField.class);
   }
 
   @Order(10.0)

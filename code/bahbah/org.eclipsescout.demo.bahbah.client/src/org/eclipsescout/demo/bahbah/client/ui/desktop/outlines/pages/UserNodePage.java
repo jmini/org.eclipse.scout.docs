@@ -56,6 +56,16 @@ public class UserNodePage extends AbstractPageWithNodes {
   }
 
   @Override
+  protected void execCreateChildPages(Collection<IPage> pageList) throws ProcessingException {
+    String[] buddies = SERVICES.getService(IStandardOutlineService.class).getOnlineUsers();
+    for (String buddy : buddies) {
+      BuddyNodePage buddyPage = new BuddyNodePage();
+      buddyPage.setName(buddy);
+      pageList.add(buddyPage);
+    }
+  }
+
+  @Override
   protected void execDecorateCell(Cell cell) {
     cell.setIconId(getConfiguredIconId());
   }
@@ -72,16 +82,6 @@ public class UserNodePage extends AbstractPageWithNodes {
       }
     }
     return null;
-  }
-
-  @Override
-  protected void execCreateChildPages(Collection<IPage> pageList) throws ProcessingException {
-    String[] buddies = SERVICES.getService(IStandardOutlineService.class).getOnlineUsers();
-    for (String buddy : buddies) {
-      BuddyNodePage buddyPage = new BuddyNodePage();
-      buddyPage.setName(buddy);
-      pageList.add(buddyPage);
-    }
   }
 
   @SuppressWarnings("unchecked")
@@ -125,14 +125,14 @@ public class UserNodePage extends AbstractPageWithNodes {
     }
 
     @Override
-    protected void execPrepareAction() throws ProcessingException {
-      setVisible(UserAgentUtility.isDesktopDevice() && ACCESS.check(new UpdateIconPermission()));
-    }
-
-    @Override
     protected void execAction() throws ProcessingException {
       IconChooserForm form = new IconChooserForm();
       form.startNew();
+    }
+
+    @Override
+    protected void execPrepareAction() throws ProcessingException {
+      setVisible(UserAgentUtility.isDesktopDevice() && ACCESS.check(new UpdateIconPermission()));
     }
   }
 }

@@ -40,6 +40,7 @@ import org.eclipsescout.demo.widgets.client.ui.forms.ToolButton2Form;
 import org.eclipsescout.demo.widgets.shared.Icons;
 
 public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(Desktop.class);
 
   public Desktop() {
@@ -265,16 +266,42 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
   }
 
   @Order(10.0)
-  public class ToolButton1Tool extends AbstractFormToolButton<ToolButton1Form> {
+  public class TestCasesOutlineViewButton extends AbstractOutlineViewButton {
+
+    public TestCasesOutlineViewButton() {
+      super(Desktop.this, WidgetsOutline.class);
+    }
 
     @Override
     protected String getConfiguredText() {
-      return TEXTS.get("ToolButton1");
+      return TEXTS.get("TestCases");
     }
+  }
+
+  @Order(20.0)
+  public class PagesSearchFormsOutlineViewButton extends AbstractOutlineViewButton {
+
+    public PagesSearchFormsOutlineViewButton() {
+      super(Desktop.this, PagesSearchFormsOutline.class);
+    }
+
+    @Override
+    protected String getConfiguredText() {
+      return TEXTS.get("PagesSearchForms");
+    }
+  }
+
+  @Order(10.0)
+  public class ToolButton1Tool extends AbstractFormToolButton<ToolButton1Form> {
 
     @Override
     protected String getConfiguredIconId() {
       return Icons.StarYellow;
+    }
+
+    @Override
+    protected String getConfiguredText() {
+      return TEXTS.get("ToolButton1");
     }
 
     @Override
@@ -324,30 +351,6 @@ public class Desktop extends AbstractExtensibleDesktop implements IDesktop {
           page.reloadPage();
         }
       }
-    }
-  }
-
-  @Order(10.0)
-  public class TestCasesOutlineViewButton extends AbstractOutlineViewButton {
-    public TestCasesOutlineViewButton() {
-      super(Desktop.this, WidgetsOutline.class);
-    }
-
-    @Override
-    protected String getConfiguredText() {
-      return TEXTS.get("TestCases");
-    }
-  }
-
-  @Order(20.0)
-  public class PagesSearchFormsOutlineViewButton extends AbstractOutlineViewButton {
-    public PagesSearchFormsOutlineViewButton() {
-      super(Desktop.this, PagesSearchFormsOutline.class);
-    }
-
-    @Override
-    protected String getConfiguredText() {
-      return TEXTS.get("PagesSearchForms");
     }
   }
 }

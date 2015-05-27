@@ -11,8 +11,6 @@
 package org.eclipsescout.demo.bahbah.client.services;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipsescout.demo.bahbah.client.ClientSession;
-import org.eclipsescout.demo.bahbah.shared.services.process.IIconProcessService;
 import org.eclipse.scout.commons.exception.ProcessingException;
 import org.eclipse.scout.commons.logger.IScoutLogger;
 import org.eclipse.scout.commons.logger.ScoutLogManager;
@@ -20,6 +18,8 @@ import org.eclipse.scout.rt.client.ClientJob;
 import org.eclipse.scout.rt.client.services.common.icon.IconProviderService;
 import org.eclipse.scout.rt.client.services.common.icon.IconSpec;
 import org.eclipse.scout.service.SERVICES;
+import org.eclipsescout.demo.bahbah.client.ClientSession;
+import org.eclipsescout.demo.bahbah.shared.services.process.IIconProcessService;
 import org.osgi.framework.ServiceRegistration;
 
 /**

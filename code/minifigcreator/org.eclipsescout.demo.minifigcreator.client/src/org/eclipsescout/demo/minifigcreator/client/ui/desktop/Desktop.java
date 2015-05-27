@@ -28,6 +28,7 @@ import org.eclipsescout.demo.minifigcreator.client.ui.forms.ServerForm;
 import org.eclipsescout.demo.minifigcreator.shared.Icons;
 
 public class Desktop extends AbstractDesktop implements IDesktop {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(Desktop.class);
   private DesktopForm m_desktopForm;
 
@@ -64,6 +65,7 @@ public class Desktop extends AbstractDesktop implements IDesktop {
 
   @Order(20.0)
   public class ServerMenu extends AbstractMenu {
+
     @Override
     protected String getConfiguredText() {
       return TEXTS.get("UpdateServer");

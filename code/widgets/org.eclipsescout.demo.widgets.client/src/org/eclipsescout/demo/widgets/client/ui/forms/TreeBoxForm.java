@@ -123,12 +123,6 @@ public class TreeBoxForm extends AbstractForm implements IPageForm {
         }
 
         @Override
-        protected void execInitField() throws ProcessingException {
-          super.execInitField();
-          getTree().setMultiSelect(true);
-        }
-
-        @Override
         protected String getConfiguredLabel() {
           return TEXTS.get("TreeBox");
         }
@@ -136,6 +130,12 @@ public class TreeBoxForm extends AbstractForm implements IPageForm {
         @Override
         protected Class<? extends LookupCall> getConfiguredLookupCall() {
           return DateLookupCall.class;
+        }
+
+        @Override
+        protected void execInitField() throws ProcessingException {
+          super.execInitField();
+          getTree().setMultiSelect(true);
         }
       }
     }

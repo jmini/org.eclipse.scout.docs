@@ -22,22 +22,11 @@ import org.eclipse.scout.rt.shared.services.common.code.CODES;
 import org.eclipsescout.demo.minifigcreator.client.ui.desktop.Desktop;
 
 public class ClientSession extends AbstractClientSession {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(ClientSession.class);
 
   public ClientSession() {
     super(true);
-  }
-
-  /**
-   * @return session in current ThreadContext
-   */
-  public static ClientSession get() {
-    return ClientJob.getCurrentSession(ClientSession.class);
-  }
-
-  @FormData
-  public Long getPersonNr() {
-    return getSharedContextVariable("personNr", Long.class);
   }
 
   @Override
@@ -55,5 +44,17 @@ public class ClientSession extends AbstractClientSession {
 
   @Override
   public void execStoreSession() throws ProcessingException {
+  }
+
+  @FormData
+  public Long getPersonNr() {
+    return getSharedContextVariable("personNr", Long.class);
+  }
+
+  /**
+   * @return session in current ThreadContext
+   */
+  public static ClientSession get() {
+    return ClientJob.getCurrentSession(ClientSession.class);
   }
 }

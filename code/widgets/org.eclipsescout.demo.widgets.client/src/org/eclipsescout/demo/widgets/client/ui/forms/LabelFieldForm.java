@@ -64,16 +64,16 @@ public class LabelFieldForm extends AbstractForm implements IPageForm {
     return getFieldByClass(CloseButton.class);
   }
 
-  public GroupBox getGroupBox() {
-    return getFieldByClass(GroupBox.class);
-  }
-
   public FontField getFontField() {
     return getFieldByClass(FontField.class);
   }
 
   public FontstyleField getFontstyleField() {
     return getFieldByClass(FontstyleField.class);
+  }
+
+  public GroupBox getGroupBox() {
+    return getFieldByClass(GroupBox.class);
   }
 
   public LoremField getLoremField() {

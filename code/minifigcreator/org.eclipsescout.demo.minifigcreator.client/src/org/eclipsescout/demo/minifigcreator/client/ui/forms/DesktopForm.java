@@ -75,6 +75,20 @@ public class DesktopForm extends AbstractForm {
     return Icons.EclipseScout;
   }
 
+  @FormData
+  public FormState getState() {
+    return m_state;
+  }
+
+  @FormData
+  public void setState(FormState state) {
+    m_state = state;
+  }
+
+  public void startView() throws ProcessingException {
+    startInternal(new ViewHandler());
+  }
+
   public ContainerBox getContainerBox() {
     return getFieldByClass(ContainerBox.class);
   }
@@ -140,11 +154,28 @@ public class DesktopForm extends AbstractForm {
         ));
   }
 
+  public void reloadForm() throws ProcessingException {
+    IDesktopProcessService service = SERVICES.getService(IDesktopProcessService.class);
+    DesktopFormData formData = new DesktopFormData();
+    exportFormData(formData);
+    formData = service.load(formData);
+    importFormData(formData);
+    FormState state = getState();
+    if (state != null) {
+      getHeadField().setEnabled(state.isHeadEnabled());
+      getTorsoField().setEnabled(state.isTorsoEnabled());
+      getLegsField().setEnabled(state.isLegsEnabled());
+    }
+    updateImage();
+    updateSummary();
+  }
+
   @Order(10.0)
   public class MainBox extends AbstractGroupBox {
 
     @Order(10.0)
     public class ContainerBox extends AbstractGroupBox {
+
       @Order(10.0)
       public class NameField extends AbstractStringField {
 
@@ -201,13 +232,13 @@ public class DesktopForm extends AbstractForm {
         public class HeadField extends AbstractSmartField<Part> {
 
           @Override
-          protected Class<? extends LookupCall> getConfiguredLookupCall() {
-            return HeadLookupCall.class;
+          protected String getConfiguredLabel() {
+            return TEXTS.get("Head");
           }
 
           @Override
-          protected String getConfiguredLabel() {
-            return TEXTS.get("Head");
+          protected Class<? extends LookupCall> getConfiguredLookupCall() {
+            return HeadLookupCall.class;
           }
 
           @Override
@@ -220,7 +251,6 @@ public class DesktopForm extends AbstractForm {
             updateImage();
             updateSummary();
           }
-
         }
 
         @Order(20.0)
@@ -232,13 +262,13 @@ public class DesktopForm extends AbstractForm {
           }
 
           @Override
-          protected boolean getConfiguredMandatory() {
-            return true;
+          protected Class<? extends LookupCall> getConfiguredLookupCall() {
+            return TorsoLookupCall.class;
           }
 
           @Override
-          protected Class<? extends LookupCall> getConfiguredLookupCall() {
-            return TorsoLookupCall.class;
+          protected boolean getConfiguredMandatory() {
+            return true;
           }
 
           @Override
@@ -257,13 +287,13 @@ public class DesktopForm extends AbstractForm {
           }
 
           @Override
-          protected boolean getConfiguredMandatory() {
-            return true;
+          protected Class<? extends LookupCall> getConfiguredLookupCall() {
+            return LegsLookupCall.class;
           }
 
           @Override
-          protected Class<? extends LookupCall> getConfiguredLookupCall() {
-            return LegsLookupCall.class;
+          protected boolean getConfiguredMandatory() {
+            return true;
           }
 
           @Override
@@ -292,8 +322,18 @@ public class DesktopForm extends AbstractForm {
       public class PreviewField extends AbstractImageField {
 
         @Override
+        protected boolean getConfiguredAutoFit() {
+          return true;
+        }
+
+        @Override
         protected int getConfiguredGridH() {
           return 6;
+        }
+
+        @Override
+        protected String getConfiguredImageId() {
+          return "Minifig_H00_T00_L00";
         }
 
         @Override
@@ -304,16 +344,6 @@ public class DesktopForm extends AbstractForm {
         @Override
         protected boolean getConfiguredLabelVisible() {
           return false;
-        }
-
-        @Override
-        protected boolean getConfiguredAutoFit() {
-          return true;
-        }
-
-        @Override
-        protected String getConfiguredImageId() {
-          return "Minifig_H00_T00_L00";
         }
       }
 
@@ -335,7 +365,6 @@ public class DesktopForm extends AbstractForm {
           return TEXTS.get("Summary");
         }
       }
-
     }
 
     @Order(100.0)
@@ -351,13 +380,13 @@ public class DesktopForm extends AbstractForm {
     public class ExportButton extends AbstractButton {
 
       @Override
-      protected String getConfiguredLabel() {
-        return TEXTS.get("Export");
+      protected int getConfiguredHorizontalAlignment() {
+        return 1;
       }
 
       @Override
-      protected int getConfiguredHorizontalAlignment() {
-        return 1;
+      protected String getConfiguredLabel() {
+        return TEXTS.get("Export");
       }
 
       @Override
@@ -384,41 +413,11 @@ public class DesktopForm extends AbstractForm {
     }
   }
 
-  public void reloadForm() throws ProcessingException {
-    IDesktopProcessService service = SERVICES.getService(IDesktopProcessService.class);
-    DesktopFormData formData = new DesktopFormData();
-    exportFormData(formData);
-    formData = service.load(formData);
-    importFormData(formData);
-    FormState state = getState();
-    if (state != null) {
-      getHeadField().setEnabled(state.isHeadEnabled());
-      getTorsoField().setEnabled(state.isTorsoEnabled());
-      getLegsField().setEnabled(state.isLegsEnabled());
-    }
-    updateImage();
-    updateSummary();
-  }
-
   public class ViewHandler extends AbstractFormHandler {
 
     @Override
     protected void execLoad() throws ProcessingException {
       reloadForm();
     }
-  }
-
-  public void startView() throws ProcessingException {
-    startInternal(new ViewHandler());
-  }
-
-  @FormData
-  public FormState getState() {
-    return m_state;
-  }
-
-  @FormData
-  public void setState(FormState state) {
-    m_state = state;
   }
 }

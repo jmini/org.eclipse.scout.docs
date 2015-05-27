@@ -35,6 +35,16 @@ public class PersonTablePage extends AbstractPageWithTable<Table> {
   private Long m_companyNr;
 
   @Override
+  protected String getConfiguredIconId() {
+    return Icons.User;
+  }
+
+  @Override
+  protected Class<? extends ISearchForm> getConfiguredSearchForm() {
+    return PersonSearchForm.class;
+  }
+
+  @Override
   protected String getConfiguredTitle() {
     return TEXTS.get("Person");
   }
@@ -53,6 +63,16 @@ public class PersonTablePage extends AbstractPageWithTable<Table> {
 
     PersonTablePageData pageData = SERVICES.getService(IStandardOutlineService.class).getPersonTableData(formData);
     importPageData(pageData);
+  }
+
+  @FormData
+  public Long getCompanyNr() {
+    return m_companyNr;
+  }
+
+  @FormData
+  public void setCompanyNr(Long companyNr) {
+    m_companyNr = companyNr;
   }
 
   @Order(10.0)
@@ -116,25 +136,5 @@ public class PersonTablePage extends AbstractPageWithTable<Table> {
         return 200;
       }
     }
-  }
-
-  @FormData
-  public Long getCompanyNr() {
-    return m_companyNr;
-  }
-
-  @FormData
-  public void setCompanyNr(Long companyNr) {
-    m_companyNr = companyNr;
-  }
-
-  @Override
-  protected String getConfiguredIconId() {
-    return Icons.User;
-  }
-
-  @Override
-  protected Class<? extends ISearchForm> getConfiguredSearchForm() {
-    return PersonSearchForm.class;
   }
 }

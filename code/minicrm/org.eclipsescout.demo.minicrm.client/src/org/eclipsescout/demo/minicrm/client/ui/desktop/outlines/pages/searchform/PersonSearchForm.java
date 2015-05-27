@@ -46,13 +46,13 @@ public class PersonSearchForm extends AbstractSearchForm {
 
   private Long m_companyNr;
 
+  public PersonSearchForm() throws ProcessingException {
+    super();
+  }
+
   @Override
   protected String getConfiguredTitle() {
     return TEXTS.get("Person");
-  }
-
-  public PersonSearchForm() throws ProcessingException {
-    super();
   }
 
   @Override
@@ -61,6 +61,16 @@ public class PersonSearchForm extends AbstractSearchForm {
     PersonSearchFormData formData = new PersonSearchFormData();
     exportFormData(formData);
     searchFilter.setFormData(formData);
+  }
+
+  @FormData
+  public Long getCompanyNr() {
+    return m_companyNr;
+  }
+
+  @FormData
+  public void setCompanyNr(Long companyNr) {
+    m_companyNr = companyNr;
   }
 
   @Override
@@ -140,13 +150,13 @@ public class PersonSearchForm extends AbstractSearchForm {
         public class EmployerTypeField extends AbstractSmartField<Long> {
 
           @Override
-          protected String getConfiguredLabel() {
-            return TEXTS.get("EmployerType");
+          protected Class<? extends ICodeType<?>> getConfiguredCodeType() {
+            return CompanyTypeCodeType.class;
           }
 
           @Override
-          protected Class<? extends ICodeType<?>> getConfiguredCodeType() {
-            return CompanyTypeCodeType.class;
+          protected String getConfiguredLabel() {
+            return TEXTS.get("EmployerType");
           }
         }
 
@@ -191,15 +201,5 @@ public class PersonSearchForm extends AbstractSearchForm {
         getEmployerTypeField().setVisible(false);
       }
     }
-  }
-
-  @FormData
-  public Long getCompanyNr() {
-    return m_companyNr;
-  }
-
-  @FormData
-  public void setCompanyNr(Long companyNr) {
-    m_companyNr = companyNr;
   }
 }

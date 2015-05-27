@@ -55,10 +55,6 @@ public class SequenceBoxForm extends AbstractForm implements IPageForm {
     return getFieldByClass(CloseButton.class);
   }
 
-  public RandomValueBox getRandomValueBox() {
-    return getFieldByClass(RandomValueBox.class);
-  }
-
   public GroupBox getGroupBox() {
     return getFieldByClass(GroupBox.class);
   }
@@ -69,6 +65,10 @@ public class SequenceBoxForm extends AbstractForm implements IPageForm {
 
   public OkButton getOkButton() {
     return getFieldByClass(OkButton.class);
+  }
+
+  public RandomValueBox getRandomValueBox() {
+    return getFieldByClass(RandomValueBox.class);
   }
 
   public SequenceBox getSequenceBox() {

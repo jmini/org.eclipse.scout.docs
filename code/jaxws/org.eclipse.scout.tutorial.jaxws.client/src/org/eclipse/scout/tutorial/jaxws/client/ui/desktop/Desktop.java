@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.scout.tutorial.jaxws.client.ui.desktop;
 
-
 import java.util.ArrayList;
 
 import org.eclipse.scout.commons.annotations.Order;
@@ -35,6 +34,7 @@ import org.eclipse.scout.tutorial.jaxws.client.ui.desktop.outlines.StandardOutli
 import org.eclipse.scout.tutorial.jaxws.shared.Icons;
 
 public class Desktop extends AbstractDesktop implements IDesktop {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(Desktop.class);
 
   public Desktop() {
@@ -105,6 +105,7 @@ public class Desktop extends AbstractDesktop implements IDesktop {
 
   @Order(25)
   public class BookmarkMenu extends AbstractBookmarkMenu {
+
     public BookmarkMenu() {
       super(Desktop.this);
     }
@@ -135,6 +136,19 @@ public class Desktop extends AbstractDesktop implements IDesktop {
   }
 
   @Order(10.0)
+  public class StandardOutlineViewButton extends AbstractOutlineViewButton {
+
+    public StandardOutlineViewButton() {
+      super(Desktop.this, StandardOutline.class);
+    }
+
+    @Override
+    protected String getConfiguredText() {
+      return TEXTS.get("StandardOutline");
+    }
+  }
+
+  @Order(10.0)
   public class RefreshOutlineKeyStroke extends AbstractKeyStroke {
 
     @Override
@@ -150,18 +164,6 @@ public class Desktop extends AbstractDesktop implements IDesktop {
           page.reloadPage();
         }
       }
-    }
-  }
-
-  @Order(10.0)
-  public class StandardOutlineViewButton extends AbstractOutlineViewButton {
-    public StandardOutlineViewButton() {
-      super(Desktop.this, StandardOutline.class);
-    }
-
-    @Override
-    protected String getConfiguredText() {
-      return TEXTS.get("StandardOutline");
     }
   }
 }

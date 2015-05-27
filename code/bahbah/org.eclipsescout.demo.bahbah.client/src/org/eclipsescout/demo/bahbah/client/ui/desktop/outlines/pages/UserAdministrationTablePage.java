@@ -63,10 +63,6 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
   @Order(10.0)
   public class Table extends AbstractTable {
 
-    public UsernameColumn getUsernameColumn() {
-      return getColumnSet().getColumnByClass(UsernameColumn.class);
-    }
-
     @Override
     protected boolean getConfiguredAutoResizeColumns() {
       return true;
@@ -88,6 +84,10 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
 
     public UserIdColumn getUserIdColumn() {
       return getColumnSet().getColumnByClass(UserIdColumn.class);
+    }
+
+    public UsernameColumn getUsernameColumn() {
+      return getColumnSet().getColumnByClass(UsernameColumn.class);
     }
 
     @Order(10.0)
@@ -142,11 +142,6 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
     public class RoleColumn extends AbstractSmartColumn<Integer> {
 
       @Override
-      protected String getConfiguredHeaderText() {
-        return TEXTS.get("Role");
-      }
-
-      @Override
       protected boolean getConfiguredAutoOptimizeWidth() {
         return true;
       }
@@ -155,6 +150,11 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
       protected Class<? extends ICodeType> getConfiguredCodeType() {
         return UserRoleCodeType.class;
 
+      }
+
+      @Override
+      protected String getConfiguredHeaderText() {
+        return TEXTS.get("Role");
       }
 
       @Override
@@ -172,11 +172,6 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
       }
 
       @Override
-      protected void execPrepareAction() throws ProcessingException {
-        setVisiblePermission(new UpdateUserPermission());
-      }
-
-      @Override
       protected void execAction() throws ProcessingException {
         UserForm form = new UserForm();
         form.getUsernameField().setValue(getUsernameColumn().getSelectedValue());
@@ -187,6 +182,11 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
         if (form.isFormStored()) {
           reloadPage();
         }
+      }
+
+      @Override
+      protected void execPrepareAction() throws ProcessingException {
+        setVisiblePermission(new UpdateUserPermission());
       }
     }
 
@@ -214,11 +214,6 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
       }
 
       @Override
-      protected void execPrepareAction() throws ProcessingException {
-        setVisiblePermission(new CreateUserPermission());
-      }
-
-      @Override
       protected void execAction() throws ProcessingException {
         UserForm frm = new UserForm();
         frm.startNew();
@@ -226,6 +221,11 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
         if (frm.isFormStored()) {
           reloadPage();
         }
+      }
+
+      @Override
+      protected void execPrepareAction() throws ProcessingException {
+        setVisiblePermission(new CreateUserPermission());
       }
     }
 
@@ -274,11 +274,6 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
       }
 
       @Override
-      protected void execPrepareAction() throws ProcessingException {
-        setVisiblePermission(new DeleteUserPermission());
-      }
-
-      @Override
       protected String getConfiguredText() {
         return TEXTS.get("DeleteUser");
       }
@@ -289,6 +284,11 @@ public class UserAdministrationTablePage extends AbstractPageWithTable<UserAdmin
           SERVICES.getService(IUserProcessService.class).deleteUsers(getUserIdColumn().getValues(getSelectedRows()));
           reloadPage();
         }
+      }
+
+      @Override
+      protected void execPrepareAction() throws ProcessingException {
+        setVisiblePermission(new DeleteUserPermission());
       }
     }
   }

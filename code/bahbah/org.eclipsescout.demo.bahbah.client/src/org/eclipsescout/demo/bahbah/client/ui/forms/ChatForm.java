@@ -127,13 +127,13 @@ public class ChatForm extends AbstractForm {
       private final Integer MESSAGE_TYPE_LOCAL = 1;
       private final Integer MESSAGE_TYPE_REMOTE = 2;
 
-      public void addMessage(boolean local, String sender, String receiver, Date date, String message) throws ProcessingException {
-        getTable().addRowByArray(new Object[]{(local ? MESSAGE_TYPE_LOCAL : MESSAGE_TYPE_REMOTE), sender, receiver, message, date});
-      }
-
       @Override
       protected boolean getConfiguredLabelVisible() {
         return false;
+      }
+
+      public void addMessage(boolean local, String sender, String receiver, Date date, String message) throws ProcessingException {
+        getTable().addRowByArray(new Object[]{(local ? MESSAGE_TYPE_LOCAL : MESSAGE_TYPE_REMOTE), sender, receiver, message, date});
       }
 
       @Order(10.0)
@@ -160,10 +160,6 @@ public class ChatForm extends AbstractForm {
           }
         }
 
-        public TimeColumn getTimeColumn() {
-          return getColumnSet().getColumnByClass(TimeColumn.class);
-        }
-
         public MessageColumn getMessageColumn() {
           return getColumnSet().getColumnByClass(MessageColumn.class);
         }
@@ -174,6 +170,10 @@ public class ChatForm extends AbstractForm {
 
         public SenderColumn getSenderColumn() {
           return getColumnSet().getColumnByClass(SenderColumn.class);
+        }
+
+        public TimeColumn getTimeColumn() {
+          return getColumnSet().getColumnByClass(TimeColumn.class);
         }
 
         public TypeColumn getTypeColumn() {
@@ -231,13 +231,13 @@ public class ChatForm extends AbstractForm {
           }
 
           @Override
-          protected int getConfiguredWidth() {
-            return 500;
+          protected boolean getConfiguredTextWrap() {
+            return true;
           }
 
           @Override
-          protected boolean getConfiguredTextWrap() {
-            return true;
+          protected int getConfiguredWidth() {
+            return 500;
           }
         }
 

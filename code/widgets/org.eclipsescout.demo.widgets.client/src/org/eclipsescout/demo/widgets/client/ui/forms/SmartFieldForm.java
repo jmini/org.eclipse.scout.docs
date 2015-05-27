@@ -153,7 +153,6 @@ public class SmartFieldForm extends AbstractForm implements IPageForm {
           protected String getConfiguredLabel() {
             return TEXTS.get("TreeWithCodeType");
           }
-
         }
 
         @Order(20.0)
@@ -228,7 +227,6 @@ public class SmartFieldForm extends AbstractForm implements IPageForm {
           protected String getConfiguredLabel() {
             return TEXTS.get("ListWithCodeType");
           }
-
         }
 
         @Order(50.0)

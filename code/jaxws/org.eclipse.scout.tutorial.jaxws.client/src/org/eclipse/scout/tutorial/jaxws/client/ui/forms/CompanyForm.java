@@ -53,10 +53,6 @@ public class CompanyForm extends AbstractForm {
     return TEXTS.get("Company");
   }
 
-  public CancelButton getCancelButton() {
-    return getFieldByClass(CancelButton.class);
-  }
-
   @FormData
   public Long getCompanyNr() {
     return companyNr;
@@ -73,6 +69,10 @@ public class CompanyForm extends AbstractForm {
 
   public void startNew() throws ProcessingException {
     startInternal(new NewHandler());
+  }
+
+  public CancelButton getCancelButton() {
+    return getFieldByClass(CancelButton.class);
   }
 
   public ChangeField getChangeField() {

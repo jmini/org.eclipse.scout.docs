@@ -40,6 +40,7 @@ import org.eclipsescout.demo.widgets.client.ui.forms.FormFieldTreeForm.MainBox.S
 import org.w3c.dom.svg.SVGDocument;
 
 public class FormFieldTreeForm extends AbstractForm {
+
   IPage m_page;
 
   public FormFieldTreeForm(IPage page) throws ProcessingException {
@@ -72,32 +73,10 @@ public class FormFieldTreeForm extends AbstractForm {
 
     @Order(10.0)
     public class FormFieldTreeField extends AbstractSvgField {
+
       private SVGDocument m_formfieldtree;
       private SVGDocument m_valuefieldtree;
       private SVGDocument m_compositetree;
-
-      @Override
-      protected void execInitField() throws ProcessingException {
-        try {
-          URL url = Activator.getDefault().getBundle().getResource("/resources/svg/formfieldtree.svg");
-          InputStream is = url.openStream();
-          m_formfieldtree = SVGUtility.readSVGDocument(is);
-
-          url = Activator.getDefault().getBundle().getResource("/resources/svg/valuefieldtree.svg");
-          is = url.openStream();
-          m_valuefieldtree = SVGUtility.readSVGDocument(is);
-
-          url = Activator.getDefault().getBundle().getResource("/resources/svg/compositefieldtree.svg");
-          is = url.openStream();
-          m_compositetree = SVGUtility.readSVGDocument(is);
-
-          setSvgDocument(m_formfieldtree);
-        }
-        catch (IOException e) {
-          e.printStackTrace();
-          throw new ProcessingException("Exception occured while reading svg file", e);
-        }
-      }
 
       @Override
       protected String getConfiguredBackgroundColor() {
@@ -141,6 +120,29 @@ public class FormFieldTreeForm extends AbstractForm {
         }
         else if (url_form.equals("compositefield")) {
           setSvgDocument(m_compositetree);
+        }
+      }
+
+      @Override
+      protected void execInitField() throws ProcessingException {
+        try {
+          URL url = Activator.getDefault().getBundle().getResource("/resources/svg/formfieldtree.svg");
+          InputStream is = url.openStream();
+          m_formfieldtree = SVGUtility.readSVGDocument(is);
+
+          url = Activator.getDefault().getBundle().getResource("/resources/svg/valuefieldtree.svg");
+          is = url.openStream();
+          m_valuefieldtree = SVGUtility.readSVGDocument(is);
+
+          url = Activator.getDefault().getBundle().getResource("/resources/svg/compositefieldtree.svg");
+          is = url.openStream();
+          m_compositetree = SVGUtility.readSVGDocument(is);
+
+          setSvgDocument(m_formfieldtree);
+        }
+        catch (IOException e) {
+          e.printStackTrace();
+          throw new ProcessingException("Exception occured while reading svg file", e);
         }
       }
     }
@@ -255,7 +257,6 @@ public class FormFieldTreeForm extends AbstractForm {
             getTreeNodeColumn().getSelectedValue().getMenu(FormPage.ViewSourceOnGitHubMenu.class).doAction();
           }
         }
-
       }
     }
 

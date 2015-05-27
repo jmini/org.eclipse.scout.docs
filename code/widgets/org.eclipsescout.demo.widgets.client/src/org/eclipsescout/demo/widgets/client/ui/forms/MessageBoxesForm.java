@@ -291,7 +291,6 @@ public class MessageBoxesForm extends AbstractForm implements IPageForm {
           throw new ProcessingException("This is a ProcessingException");
         }
       }
-
     }
 
     @Order(100.0)

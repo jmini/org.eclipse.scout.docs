@@ -49,13 +49,14 @@ public class BuddyNodePage extends AbstractPageWithNodes {
     return getName();
   }
 
-  public void setDefaultFocus() {
-    new ClientJob("set focus to message field", ClientSession.get(), true) {
-      @Override
-      protected void runVoid(IProgressMonitor monitor) throws Throwable {
-        getChatForm().getMessageField().requestFocus();
-      }
-    }.schedule(200);
+  @Override
+  protected void execPageActivated() throws ProcessingException {
+    super.execPageActivated();
+
+    // after buddy page activation the buddy's chat history is displayed on the right side
+    ChatForm chatForm = getChatForm();
+    setDetailForm(chatForm);
+    setDefaultFocus();
   }
 
   public ChatForm getChatForm() throws ProcessingException {
@@ -69,14 +70,13 @@ public class BuddyNodePage extends AbstractPageWithNodes {
     return m_form;
   }
 
-  @Override
-  protected void execPageActivated() throws ProcessingException {
-    super.execPageActivated();
-
-    // after buddy page activation the buddy's chat history is displayed on the right side
-    ChatForm chatForm = getChatForm();
-    setDetailForm(chatForm);
-    setDefaultFocus();
+  public void setDefaultFocus() {
+    new ClientJob("set focus to message field", ClientSession.get(), true) {
+      @Override
+      protected void runVoid(IProgressMonitor monitor) throws Throwable {
+        getChatForm().getMessageField().requestFocus();
+      }
+    }.schedule(200);
   }
 
   @FormData

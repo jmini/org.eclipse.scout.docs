@@ -56,21 +56,26 @@ import org.eclipsescout.demo.widgets.client.ui.searchforms.SearchForm.MainBox.Ta
 
 public class SearchForm extends AbstractSearchForm {
 
+  public SearchForm() throws ProcessingException {
+    super();
+  }
+
   @Override
   protected String getConfiguredIconId() {
     return org.eclipse.scout.rt.shared.AbstractIcons.SmartFieldBrowse;
   }
 
-  public SearchForm() throws ProcessingException {
-    super();
-  }
-
-  public CloseButton getCloseButton() {
-    return getFieldByClass(CloseButton.class);
+  @Override
+  public void startSearch() throws ProcessingException {
+    startInternal(new SearchHandler());
   }
 
   public BooleanField getBooleanField() {
     return getFieldByClass(BooleanField.class);
+  }
+
+  public CloseButton getCloseButton() {
+    return getFieldByClass(CloseButton.class);
   }
 
   public DateBox getDateBox() {
@@ -166,6 +171,25 @@ public class SearchForm extends AbstractSearchForm {
         @Override
         protected String getConfiguredLabel() {
           return TEXTS.get("searchCriteria");
+        }
+
+        @Order(10.0)
+        public class SmartField extends AbstractListBox<Long> {
+
+          @Override
+          protected int getConfiguredGridH() {
+            return 4;
+          }
+
+          @Override
+          protected String getConfiguredLabel() {
+            return TEXTS.get("SmartColumn");
+          }
+
+          @Override
+          protected Class<? extends LookupCall> getConfiguredLookupCall() {
+            return CompanyTypeLookupCall.class;
+          }
         }
 
         @Order(10.0)
@@ -293,25 +317,6 @@ public class SearchForm extends AbstractSearchForm {
             return TEXTS.get("BooleanColumn");
           }
         }
-
-        @Order(10.0)
-        public class SmartField extends AbstractListBox<Long> {
-
-          @Override
-          protected int getConfiguredGridH() {
-            return 4;
-          }
-
-          @Override
-          protected String getConfiguredLabel() {
-            return TEXTS.get("SmartColumn");
-          }
-
-          @Override
-          protected Class<? extends LookupCall> getConfiguredLookupCall() {
-            return CompanyTypeLookupCall.class;
-          }
-        }
       }
     }
 
@@ -338,11 +343,6 @@ public class SearchForm extends AbstractSearchForm {
     @Order(40.0)
     public class SearchButton extends AbstractSearchButton {
     }
-  }
-
-  @Override
-  public void startSearch() throws ProcessingException {
-    startInternal(new SearchHandler());
   }
 
   public class SearchHandler extends AbstractFormHandler {

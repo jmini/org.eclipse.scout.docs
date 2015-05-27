@@ -66,8 +66,8 @@ public class DesktopForm extends AbstractForm {
     return Icons.EclipseScout;
   }
 
-  public SearchBox getSearchBox() {
-    return getFieldByClass(SearchBox.class);
+  public void startView() throws ProcessingException {
+    startInternal(new ViewHandler());
   }
 
   public AssigneeField getAssigneeField() {
@@ -94,6 +94,10 @@ public class DesktopForm extends AbstractForm {
     return getFieldByClass(RefreshButton.class);
   }
 
+  public SearchBox getSearchBox() {
+    return getFieldByClass(SearchBox.class);
+  }
+
   @Order(10.0)
   public class MainBox extends AbstractGroupBox {
 
@@ -109,12 +113,12 @@ public class DesktopForm extends AbstractForm {
       public class SearchBox extends AbstractSequenceBox {
 
         @Override
-        protected boolean getConfiguredLabelVisible() {
+        protected boolean getConfiguredAutoCheckFromTo() {
           return false;
         }
 
         @Override
-        protected boolean getConfiguredAutoCheckFromTo() {
+        protected boolean getConfiguredLabelVisible() {
           return false;
         }
 
@@ -182,38 +186,6 @@ public class DesktopForm extends AbstractForm {
         @Order(10.0)
         public class Table extends AbstractExtensibleTable {
 
-          public SeveretyColumn getSeveretyColumn() {
-            return getColumnSet().getColumnByClass(SeveretyColumn.class);
-          }
-
-          public PriorityColumn getPriorityColumn() {
-            return getColumnSet().getColumnByClass(PriorityColumn.class);
-          }
-
-          public TargetMilestoneColumn getTargetMilestoneColumn() {
-            return getColumnSet().getColumnByClass(TargetMilestoneColumn.class);
-          }
-
-          public StatusColumn getStatusColumn() {
-            return getColumnSet().getColumnByClass(StatusColumn.class);
-          }
-
-          public ResolutionColumn getResolutionColumn() {
-            return getColumnSet().getColumnByClass(ResolutionColumn.class);
-          }
-
-          public SortValueColumn getSortValueColumn() {
-            return getColumnSet().getColumnByClass(SortValueColumn.class);
-          }
-
-          public SummaryColumn getSummaryColumn() {
-            return getColumnSet().getColumnByClass(SummaryColumn.class);
-          }
-
-          public LastChangedColumn getLastChangedColumn() {
-            return getColumnSet().getColumnByClass(LastChangedColumn.class);
-          }
-
           @Override
           protected void execRowAction(ITableRow row) throws ProcessingException {
             getMenu(OpenBugMenu.class).execAction();
@@ -229,6 +201,38 @@ public class DesktopForm extends AbstractForm {
 
           public IDColumn getIDColumn() {
             return getColumnSet().getColumnByClass(IDColumn.class);
+          }
+
+          public LastChangedColumn getLastChangedColumn() {
+            return getColumnSet().getColumnByClass(LastChangedColumn.class);
+          }
+
+          public PriorityColumn getPriorityColumn() {
+            return getColumnSet().getColumnByClass(PriorityColumn.class);
+          }
+
+          public ResolutionColumn getResolutionColumn() {
+            return getColumnSet().getColumnByClass(ResolutionColumn.class);
+          }
+
+          public SeveretyColumn getSeveretyColumn() {
+            return getColumnSet().getColumnByClass(SeveretyColumn.class);
+          }
+
+          public SortValueColumn getSortValueColumn() {
+            return getColumnSet().getColumnByClass(SortValueColumn.class);
+          }
+
+          public StatusColumn getStatusColumn() {
+            return getColumnSet().getColumnByClass(StatusColumn.class);
+          }
+
+          public SummaryColumn getSummaryColumn() {
+            return getColumnSet().getColumnByClass(SummaryColumn.class);
+          }
+
+          public TargetMilestoneColumn getTargetMilestoneColumn() {
+            return getColumnSet().getColumnByClass(TargetMilestoneColumn.class);
           }
 
           @Order(10.0)
@@ -425,9 +429,5 @@ public class DesktopForm extends AbstractForm {
       importFormData(formData);
 
     }
-  }
-
-  public void startView() throws ProcessingException {
-    startInternal(new ViewHandler());
   }
 }

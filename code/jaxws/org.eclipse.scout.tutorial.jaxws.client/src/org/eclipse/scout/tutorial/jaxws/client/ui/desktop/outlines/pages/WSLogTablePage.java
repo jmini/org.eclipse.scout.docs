@@ -38,18 +38,6 @@ public class WSLogTablePage extends AbstractPageWithTable<WSLogTablePage.Table> 
   @Order(10.0)
   public class Table extends AbstractTable {
 
-    public ServiceColumn getServiceColumn() {
-      return getColumnSet().getColumnByClass(ServiceColumn.class);
-    }
-
-    public PortColumn getPortColumn() {
-      return getColumnSet().getColumnByClass(PortColumn.class);
-    }
-
-    public OperationColumn getOperationColumn() {
-      return getColumnSet().getColumnByClass(OperationColumn.class);
-    }
-
     @Override
     protected boolean getConfiguredAutoResizeColumns() {
       return true;
@@ -57,6 +45,18 @@ public class WSLogTablePage extends AbstractPageWithTable<WSLogTablePage.Table> 
 
     public DateColumn getDateColumn() {
       return getColumnSet().getColumnByClass(DateColumn.class);
+    }
+
+    public OperationColumn getOperationColumn() {
+      return getColumnSet().getColumnByClass(OperationColumn.class);
+    }
+
+    public PortColumn getPortColumn() {
+      return getColumnSet().getColumnByClass(PortColumn.class);
+    }
+
+    public ServiceColumn getServiceColumn() {
+      return getColumnSet().getColumnByClass(ServiceColumn.class);
     }
 
     public WsLogNrColumn getWsLogNrColumn() {

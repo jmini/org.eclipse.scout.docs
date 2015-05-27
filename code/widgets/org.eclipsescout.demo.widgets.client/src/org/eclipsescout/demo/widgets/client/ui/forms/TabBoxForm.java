@@ -129,54 +129,6 @@ public class TabBoxForm extends AbstractForm implements IPageForm {
         return false;
       }
 
-      @Order(20.0)
-      public class Tab2Box extends AbstractGroupBox {
-
-        @Override
-        protected String getConfiguredLabel() {
-          return TEXTS.get("Tab2");
-        }
-
-        @Override
-        protected boolean getConfiguredLabelVisible() {
-          return false;
-        }
-
-        @Order(10.0)
-        public class MultilineStringField extends AbstractStringField {
-
-          @Override
-          protected int getConfiguredGridH() {
-            return 4;
-          }
-
-          @Override
-          protected int getConfiguredGridW() {
-            return 2;
-          }
-
-          @Override
-          protected boolean getConfiguredLabelVisible() {
-            return false;
-          }
-
-          @Override
-          protected boolean getConfiguredMultilineText() {
-            return true;
-          }
-
-          @Override
-          protected boolean getConfiguredWrapText() {
-            return true;
-          }
-
-          @Override
-          protected void execInitField() throws ProcessingException {
-            setValue(TEXTS.get("Lorem"));
-          }
-        }
-      }
-
       @Order(10.0)
       public class Tab1Box extends AbstractGroupBox {
 
@@ -273,6 +225,54 @@ public class TabBoxForm extends AbstractForm implements IPageForm {
           @Override
           protected void execInitField() throws ProcessingException {
             setValue(new Date());
+          }
+        }
+      }
+
+      @Order(20.0)
+      public class Tab2Box extends AbstractGroupBox {
+
+        @Override
+        protected String getConfiguredLabel() {
+          return TEXTS.get("Tab2");
+        }
+
+        @Override
+        protected boolean getConfiguredLabelVisible() {
+          return false;
+        }
+
+        @Order(10.0)
+        public class MultilineStringField extends AbstractStringField {
+
+          @Override
+          protected int getConfiguredGridH() {
+            return 4;
+          }
+
+          @Override
+          protected int getConfiguredGridW() {
+            return 2;
+          }
+
+          @Override
+          protected boolean getConfiguredLabelVisible() {
+            return false;
+          }
+
+          @Override
+          protected boolean getConfiguredMultilineText() {
+            return true;
+          }
+
+          @Override
+          protected boolean getConfiguredWrapText() {
+            return true;
+          }
+
+          @Override
+          protected void execInitField() throws ProcessingException {
+            setValue(TEXTS.get("Lorem"));
           }
         }
       }

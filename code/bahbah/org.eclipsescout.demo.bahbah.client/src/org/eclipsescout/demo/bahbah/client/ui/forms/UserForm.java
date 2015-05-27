@@ -56,16 +56,16 @@ public class UserForm extends AbstractForm {
     m_userId = userId;
   }
 
-  public CancelButton getCancelButton() {
-    return getFieldByClass(CancelButton.class);
-  }
-
   public void startModify() throws ProcessingException {
     startInternal(new ModifyHandler());
   }
 
   public void startNew() throws ProcessingException {
     startInternal(new NewHandler());
+  }
+
+  public CancelButton getCancelButton() {
+    return getFieldByClass(CancelButton.class);
   }
 
   public MainBox getMainBox() {
@@ -168,13 +168,13 @@ public class UserForm extends AbstractForm {
       public class UserRoleField extends AbstractSmartField<Integer> {
 
         @Override
-        protected String getConfiguredLabel() {
-          return TEXTS.get("UserRole");
+        protected Class<? extends ICodeType<Integer>> getConfiguredCodeType() {
+          return UserRoleCodeType.class;
         }
 
         @Override
-        protected Class<? extends ICodeType<Integer>> getConfiguredCodeType() {
-          return UserRoleCodeType.class;
+        protected String getConfiguredLabel() {
+          return TEXTS.get("UserRole");
         }
 
         @Override
@@ -199,6 +199,7 @@ public class UserForm extends AbstractForm {
   }
 
   public class ModifyHandler extends AbstractFormHandler {
+
     @Override
     protected void execLoad() throws ProcessingException {
       setEnabledPermission(new UpdateUserPermission());

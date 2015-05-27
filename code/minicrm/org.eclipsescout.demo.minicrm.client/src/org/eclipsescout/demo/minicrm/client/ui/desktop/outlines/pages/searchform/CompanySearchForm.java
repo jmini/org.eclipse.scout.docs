@@ -34,13 +34,13 @@ import org.eclipsescout.demo.minicrm.shared.ui.desktop.outlines.pages.searchform
 @FormData(value = CompanySearchFormData.class, sdkCommand = SdkCommand.CREATE)
 public class CompanySearchForm extends AbstractSearchForm {
 
+  public CompanySearchForm() throws ProcessingException {
+    super();
+  }
+
   @Override
   protected String getConfiguredTitle() {
     return TEXTS.get("Company");
-  }
-
-  public CompanySearchForm() throws ProcessingException {
-    super();
   }
 
   @Override

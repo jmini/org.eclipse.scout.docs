@@ -41,6 +41,16 @@ import org.eclipsescout.demo.minicrm.shared.ui.desktop.outlines.pages.searchform
 public class CompanyTablePage extends AbstractPageWithTable<Table> {
 
   @Override
+  protected String getConfiguredIconId() {
+    return Icons.Building;
+  }
+
+  @Override
+  protected Class<? extends ISearchForm> getConfiguredSearchForm() {
+    return CompanySearchForm.class;
+  }
+
+  @Override
   protected String getConfiguredTitle() {
     return TEXTS.get("Company");
   }
@@ -65,18 +75,6 @@ public class CompanyTablePage extends AbstractPageWithTable<Table> {
   @Order(10.0)
   public class Table extends AbstractExtensibleTable {
 
-    public ShortNameColumn getShortNameColumn() {
-      return getColumnSet().getColumnByClass(ShortNameColumn.class);
-    }
-
-    public NameColumn getNameColumn() {
-      return getColumnSet().getColumnByClass(NameColumn.class);
-    }
-
-    public CompanyTypeColumn getCompanyTypeColumn() {
-      return getColumnSet().getColumnByClass(CompanyTypeColumn.class);
-    }
-
     @Override
     protected String getConfiguredDefaultIconId() {
       return Icons.Building;
@@ -84,6 +82,18 @@ public class CompanyTablePage extends AbstractPageWithTable<Table> {
 
     public CompanyNrColumn getCompanyNrColumn() {
       return getColumnSet().getColumnByClass(CompanyNrColumn.class);
+    }
+
+    public CompanyTypeColumn getCompanyTypeColumn() {
+      return getColumnSet().getColumnByClass(CompanyTypeColumn.class);
+    }
+
+    public NameColumn getNameColumn() {
+      return getColumnSet().getColumnByClass(NameColumn.class);
+    }
+
+    public ShortNameColumn getShortNameColumn() {
+      return getColumnSet().getColumnByClass(ShortNameColumn.class);
     }
 
     @Order(10.0)
@@ -132,14 +142,14 @@ public class CompanyTablePage extends AbstractPageWithTable<Table> {
     public class CompanyTypeColumn extends AbstractSmartColumn<Long> {
 
       @Override
-      protected String getConfiguredHeaderText() {
-        return TEXTS.get("CompanyType");
-      }
-
-      @Override
       protected Class<? extends ICodeType> getConfiguredCodeType() {
         return CompanyTypeCodeType.class;
 
+      }
+
+      @Override
+      protected String getConfiguredHeaderText() {
+        return TEXTS.get("CompanyType");
       }
 
       @Override
@@ -152,11 +162,6 @@ public class CompanyTablePage extends AbstractPageWithTable<Table> {
     public class NewCompanyMenu extends AbstractExtensibleMenu {
 
       @Override
-      protected String getConfiguredText() {
-        return TEXTS.get("NewCompany");
-      }
-
-      @Override
       protected boolean getConfiguredEmptySpaceAction() {
         return true;
       }
@@ -164,6 +169,11 @@ public class CompanyTablePage extends AbstractPageWithTable<Table> {
       @Override
       protected boolean getConfiguredSingleSelectionAction() {
         return false;
+      }
+
+      @Override
+      protected String getConfiguredText() {
+        return TEXTS.get("NewCompany");
       }
 
       @Override
@@ -213,15 +223,5 @@ public class CompanyTablePage extends AbstractPageWithTable<Table> {
         }
       }
     }
-  }
-
-  @Override
-  protected String getConfiguredIconId() {
-    return Icons.Building;
-  }
-
-  @Override
-  protected Class<? extends ISearchForm> getConfiguredSearchForm() {
-    return CompanySearchForm.class;
   }
 }

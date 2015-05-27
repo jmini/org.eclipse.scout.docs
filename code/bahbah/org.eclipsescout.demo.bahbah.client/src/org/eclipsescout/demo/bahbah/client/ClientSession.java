@@ -27,23 +27,11 @@ import org.eclipsescout.demo.bahbah.client.ui.desktop.Desktop;
 import org.eclipsescout.demo.bahbah.shared.services.process.IUserProcessService;
 
 public class ClientSession extends AbstractClientSession {
+
   private static IScoutLogger logger = ScoutLogManager.getLogger(ClientSession.class);
 
   public ClientSession() {
     super(true);
-  }
-
-  /**
-   * @return session in current ThreadContext
-   */
-  public static ClientSession get() {
-    return ClientJob.getCurrentSession(ClientSession.class);
-  }
-
-  @SuppressWarnings("unchecked")
-  @FormData
-  public ICode<Integer> getPermission() {
-    return getSharedContextVariable(IUserProcessService.PERMISSION_KEY, ICode.class);
   }
 
   @Override
@@ -68,5 +56,18 @@ public class ClientSession extends AbstractClientSession {
     // disable notification polling with -1
     ClientSession.get().getServiceTunnel().setClientNotificationPollInterval(-1);
     SERVICES.getService(IUserProcessService.class).unregisterUser();
+  }
+
+  @SuppressWarnings("unchecked")
+  @FormData
+  public ICode<Integer> getPermission() {
+    return getSharedContextVariable(IUserProcessService.PERMISSION_KEY, ICode.class);
+  }
+
+  /**
+   * @return session in current ThreadContext
+   */
+  public static ClientSession get() {
+    return ClientJob.getCurrentSession(ClientSession.class);
   }
 }

@@ -59,14 +59,6 @@ public class PageWithADetailformTablePage extends AbstractPageWithTable<PageWith
   @Order(10.0)
   public class Table extends AbstractTable {
 
-    public NameColumn getNameColumn() {
-      return getColumnSet().getColumnByClass(NameColumn.class);
-    }
-
-    public SymbolColumn getSymbolColumn() {
-      return getColumnSet().getColumnByClass(SymbolColumn.class);
-    }
-
     @Override
     protected boolean getConfiguredAutoResizeColumns() {
       return true;
@@ -79,6 +71,14 @@ public class PageWithADetailformTablePage extends AbstractPageWithTable<PageWith
 
     public CompanyNrColumn getCompanyNrColumn() {
       return getColumnSet().getColumnByClass(CompanyNrColumn.class);
+    }
+
+    public NameColumn getNameColumn() {
+      return getColumnSet().getColumnByClass(NameColumn.class);
+    }
+
+    public SymbolColumn getSymbolColumn() {
+      return getColumnSet().getColumnByClass(SymbolColumn.class);
     }
 
     @Order(10.0)

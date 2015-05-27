@@ -69,16 +69,16 @@ public class TreeFieldForm extends AbstractForm implements IPageForm {
     return getFieldByClass(MainBox.class);
   }
 
-  public TreeField getTreeField() {
-    return getFieldByClass(TreeField.class);
+  public SecondTreeField getSecondTreeField() {
+    return getFieldByClass(SecondTreeField.class);
   }
 
   public SecondTreeSearchField getSecondTreeSearchField() {
     return getFieldByClass(SecondTreeSearchField.class);
   }
 
-  public SecondTreeField getSecondTreeField() {
-    return getFieldByClass(SecondTreeField.class);
+  public TreeField getTreeField() {
+    return getFieldByClass(TreeField.class);
   }
 
   @Order(10.0)
@@ -86,6 +86,69 @@ public class TreeFieldForm extends AbstractForm implements IPageForm {
 
     @Order(10.0)
     public class GroupBox extends AbstractGroupBox {
+
+      @Order(10.0)
+      public class SecondTreeSearchField extends AbstractStringField implements ITreeNodeFilter {
+
+        private Pattern m_lowercaseFilterPattern;
+
+        @Override
+        protected int getConfiguredGridX() {
+          return 1;
+        }
+
+        @Override
+        protected int getConfiguredGridY() {
+          return 0;
+        }
+
+        @Override
+        protected String getConfiguredLabel() {
+          return "Search";//TODO
+        }
+
+        @Override
+        public int getConfiguredLabelPosition() {
+          return IFormField.LABEL_POSITION_ON_FIELD;
+        }
+
+        @Override
+        protected boolean getConfiguredLabelVisible() {
+          return false;
+        }
+
+        @Override
+        protected boolean getConfiguredValidateOnAnyKey() {
+          return true;
+        }
+
+        @Override
+        protected void execChangedValue() throws ProcessingException {
+          String s = StringUtility.emptyIfNull(getValue()).trim();
+          if (s.length() > 0) {
+            if (!s.endsWith("*")) {
+              s = s + "*";
+            }
+            if (!s.startsWith("*")) {
+              s = "*" + s;
+            }
+            m_lowercaseFilterPattern = Pattern.compile(StringUtility.toRegExPattern(s.toLowerCase(LocaleThreadLocal.get())));
+            getSecondTreeField().getTree().addNodeFilter(this);
+          }
+          else {
+            getSecondTreeField().getTree().removeNodeFilter(this);
+          }
+        }
+
+        /**
+         * Implementation of ITreeNodeFilter
+         */
+        @Override
+        public boolean accept(ITreeNode node, int level) {
+          String text = node.getCell().getText();
+          return text == null || m_lowercaseFilterPattern == null || m_lowercaseFilterPattern.matcher(text.toLowerCase(LocaleThreadLocal.get())).matches();
+        }
+      }
 
       @Order(10.0)
       public class TreeField extends AbstractTreeField {
@@ -177,68 +240,6 @@ public class TreeFieldForm extends AbstractForm implements IPageForm {
         }
       }
 
-      @Order(10.0)
-      public class SecondTreeSearchField extends AbstractStringField implements ITreeNodeFilter {
-        private Pattern m_lowercaseFilterPattern;
-
-        @Override
-        protected String getConfiguredLabel() {
-          return "Search";//TODO
-        }
-
-        @Override
-        protected int getConfiguredGridX() {
-          return 1;
-        }
-
-        @Override
-        protected int getConfiguredGridY() {
-          return 0;
-        }
-
-        @Override
-        public int getConfiguredLabelPosition() {
-          return IFormField.LABEL_POSITION_ON_FIELD;
-        }
-
-        @Override
-        protected boolean getConfiguredLabelVisible() {
-          return false;
-        }
-
-        @Override
-        protected boolean getConfiguredValidateOnAnyKey() {
-          return true;
-        }
-
-        @Override
-        protected void execChangedValue() throws ProcessingException {
-          String s = StringUtility.emptyIfNull(getValue()).trim();
-          if (s.length() > 0) {
-            if (!s.endsWith("*")) {
-              s = s + "*";
-            }
-            if (!s.startsWith("*")) {
-              s = "*" + s;
-            }
-            m_lowercaseFilterPattern = Pattern.compile(StringUtility.toRegExPattern(s.toLowerCase(LocaleThreadLocal.get())));
-            getSecondTreeField().getTree().addNodeFilter(this);
-          }
-          else {
-            getSecondTreeField().getTree().removeNodeFilter(this);
-          }
-        }
-
-        /**
-         * Implementation of ITreeNodeFilter
-         */
-        @Override
-        public boolean accept(ITreeNode node, int level) {
-          String text = node.getCell().getText();
-          return text == null || m_lowercaseFilterPattern == null || m_lowercaseFilterPattern.matcher(text.toLowerCase(LocaleThreadLocal.get())).matches();
-        }
-      }
-
       @Order(30.0)
       public class SecondTreeField extends AbstractTreeField {
 
@@ -258,13 +259,13 @@ public class TreeFieldForm extends AbstractForm implements IPageForm {
         }
 
         @Override
-        protected boolean getConfiguredLabelVisible() {
-          return false;
+        protected String getConfiguredLabel() {
+          return TEXTS.get("TreeField");
         }
 
         @Override
-        protected String getConfiguredLabel() {
-          return TEXTS.get("TreeField");
+        protected boolean getConfiguredLabelVisible() {
+          return false;
         }
 
         @Override
@@ -332,6 +333,7 @@ public class TreeFieldForm extends AbstractForm implements IPageForm {
 
         @Order(10.0)
         public class Tree extends AbstractTree {
+
           @Override
           protected boolean getConfiguredMultiSelect() {
             return true;

@@ -23,17 +23,18 @@ import org.eclipsescout.demo.widgets.client.ClientSession;
 import org.eclipsescout.demo.widgets.client.ui.searchforms.SearchForm;
 
 public class SearchFormTablePage extends AbstractPageWithTable<SearchFormTablePage.Table> {
+
   private String m_displayViewId;
+
+  public SearchFormTablePage() {
+    super();
+    getCellForUpdate().setText("Default");
+  }
 
   public SearchFormTablePage(String displayViewId, String displayViewName) {
     super();
     m_displayViewId = displayViewId;
     getCellForUpdate().setText(displayViewName);
-  }
-
-  public SearchFormTablePage() {
-    super();
-    getCellForUpdate().setText("Default");
   }
 
   @Override

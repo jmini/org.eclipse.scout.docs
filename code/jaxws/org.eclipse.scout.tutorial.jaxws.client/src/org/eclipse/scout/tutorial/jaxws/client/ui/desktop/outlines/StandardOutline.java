@@ -27,9 +27,9 @@ public class StandardOutline extends AbstractOutline {
 
   @Override
   protected void execCreateChildPages(Collection<IPage> pageList) throws ProcessingException {
-  CompanyTablePage companyTablePage = new CompanyTablePage();
+    CompanyTablePage companyTablePage = new CompanyTablePage();
     pageList.add(companyTablePage);
-pageList.add(new WSLogTablePage());
-  
+    pageList.add(new WSLogTablePage());
+
   }
 }

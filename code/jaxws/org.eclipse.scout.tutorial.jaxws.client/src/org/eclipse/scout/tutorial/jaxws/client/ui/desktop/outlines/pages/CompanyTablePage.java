@@ -39,14 +39,6 @@ public class CompanyTablePage extends AbstractPageWithTable<CompanyTablePage.Tab
   @Order(10.0)
   public class Table extends AbstractTable {
 
-    public NameColumn getNameColumn() {
-      return getColumnSet().getColumnByClass(NameColumn.class);
-    }
-
-    public SymbolColumn getSymbolColumn() {
-      return getColumnSet().getColumnByClass(SymbolColumn.class);
-    }
-
     @Override
     protected boolean getConfiguredAutoResizeColumns() {
       return true;
@@ -54,6 +46,14 @@ public class CompanyTablePage extends AbstractPageWithTable<CompanyTablePage.Tab
 
     public CompanyNrColumn getCompanyNrColumn() {
       return getColumnSet().getColumnByClass(CompanyNrColumn.class);
+    }
+
+    public NameColumn getNameColumn() {
+      return getColumnSet().getColumnByClass(NameColumn.class);
+    }
+
+    public SymbolColumn getSymbolColumn() {
+      return getColumnSet().getColumnByClass(SymbolColumn.class);
     }
 
     @Order(10.0)
@@ -87,11 +87,6 @@ public class CompanyTablePage extends AbstractPageWithTable<CompanyTablePage.Tab
     public class NewCompanyMenu extends AbstractMenu {
 
       @Override
-      protected String getConfiguredText() {
-        return TEXTS.get("NewCompany");
-      }
-
-      @Override
       protected boolean getConfiguredEmptySpaceAction() {
         return true;
       }
@@ -99,6 +94,11 @@ public class CompanyTablePage extends AbstractPageWithTable<CompanyTablePage.Tab
       @Override
       protected boolean getConfiguredSingleSelectionAction() {
         return false;
+      }
+
+      @Override
+      protected String getConfiguredText() {
+        return TEXTS.get("NewCompany");
       }
 
       @Override

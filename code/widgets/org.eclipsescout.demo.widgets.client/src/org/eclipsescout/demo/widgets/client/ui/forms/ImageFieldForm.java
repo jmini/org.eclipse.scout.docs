@@ -59,6 +59,10 @@ public class ImageFieldForm extends AbstractForm implements IPageForm {
     return getFieldByClass(ImageBox.class);
   }
 
+  public ImageField getImageField() {
+    return getFieldByClass(ImageField.class);
+  }
+
   public ImageURLField getImageURLField() {
     return getFieldByClass(ImageURLField.class);
   }
@@ -69,10 +73,6 @@ public class ImageFieldForm extends AbstractForm implements IPageForm {
 
   public ScoutLogoField getScoutLogoField() {
     return getFieldByClass(ScoutLogoField.class);
-  }
-
-  public ImageField getImageField() {
-    return getFieldByClass(ImageField.class);
   }
 
   @Order(10.0)
@@ -117,7 +117,6 @@ public class ImageFieldForm extends AbstractForm implements IPageForm {
         protected String getConfiguredLabel() {
           return TEXTS.get("ImageURL");
         }
-
       }
 
       @Order(30.0)

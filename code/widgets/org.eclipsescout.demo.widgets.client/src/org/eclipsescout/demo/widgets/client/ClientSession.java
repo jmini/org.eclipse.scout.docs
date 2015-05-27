@@ -26,27 +26,13 @@ import org.eclipse.scout.service.SERVICES;
 import org.eclipsescout.demo.widgets.client.ui.desktop.Desktop;
 
 public class ClientSession extends AbstractClientSession {
-  private static IScoutLogger logger = ScoutLogManager.getLogger(ClientSession.class);
 
+  private static IScoutLogger logger = ScoutLogManager.getLogger(ClientSession.class);
   private String m_product;
   private boolean m_footless;
 
   public ClientSession() {
     super(true);
-  }
-
-  /**
-   * @return true if there is no server attached or available
-   */
-  public boolean isFootless() {
-    return m_footless;
-  }
-
-  /**
-   * @return session in current ThreadContext
-   */
-  public static ClientSession get() {
-    return ClientJob.getCurrentSession(ClientSession.class);
   }
 
   @Override
@@ -69,5 +55,19 @@ public class ClientSession extends AbstractClientSession {
       getServiceTunnel().setClientNotificationPollInterval(2000L);
       SERVICES.getService(IPingService.class).ping("ping");
     }
+  }
+
+  /**
+   * @return session in current ThreadContext
+   */
+  public static ClientSession get() {
+    return ClientJob.getCurrentSession(ClientSession.class);
+  }
+
+  /**
+   * @return true if there is no server attached or available
+   */
+  public boolean isFootless() {
+    return m_footless;
   }
 }

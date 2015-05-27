@@ -31,6 +31,7 @@ import org.eclipsescout.demo.widgets.client.ui.forms.BrowserFieldForm.MainBox.Cl
 import org.eclipsescout.demo.widgets.client.ui.forms.BrowserFieldForm.MainBox.EclipseScoutButton;
 
 public class BrowserFieldForm extends AbstractForm implements IPageForm {
+
   private static final IScoutLogger LOG = ScoutLogManager.getLogger(BrowserFieldForm.class);
 
   public BrowserFieldForm() throws ProcessingException {

@@ -18,6 +18,7 @@ import org.eclipse.scout.rt.shared.services.lookup.LocalLookupCall;
 import org.eclipse.scout.rt.shared.services.lookup.LookupRow;
 
 public class ProductLookupCall extends LocalLookupCall {
+
   private static final long serialVersionUID = 1L;
 
   @Override

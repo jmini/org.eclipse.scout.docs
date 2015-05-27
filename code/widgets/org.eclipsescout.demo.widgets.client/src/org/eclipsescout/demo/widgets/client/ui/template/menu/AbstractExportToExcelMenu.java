@@ -5,7 +5,6 @@ import java.io.File;
 import org.eclipse.scout.commons.exception.ProcessingException;
 import org.eclipse.scout.rt.client.ui.action.menu.AbstractMenu;
 import org.eclipse.scout.rt.client.ui.desktop.outline.pages.IPage;
-import org.eclipse.scout.rt.docx4j.client.ScoutXlsxSpreadsheetAdapter;
 import org.eclipse.scout.rt.shared.TEXTS;
 import org.eclipse.scout.rt.shared.services.common.shell.IShellService;
 import org.eclipse.scout.service.SERVICES;

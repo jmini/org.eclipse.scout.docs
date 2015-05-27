@@ -53,10 +53,6 @@ public class CompanyForm extends AbstractForm {
     return TEXTS.get("Company");
   }
 
-  public CancelButton getCancelButton() {
-    return getFieldByClass(CancelButton.class);
-  }
-
   @FormData
   public Long getCompanyNr() {
     return companyNr;
@@ -73,6 +69,10 @@ public class CompanyForm extends AbstractForm {
 
   public void startNew() throws ProcessingException {
     startInternal(new NewHandler());
+  }
+
+  public CancelButton getCancelButton() {
+    return getFieldByClass(CancelButton.class);
   }
 
   public CompanyRatingField getCompanyRatingField() {
@@ -138,13 +138,13 @@ public class CompanyForm extends AbstractForm {
     public class CompanyRatingField extends AbstractSmartField<Long> {
 
       @Override
-      protected String getConfiguredLabel() {
-        return TEXTS.get("CompanyRating");
+      protected Class<? extends ICodeType<?>> getConfiguredCodeType() {
+        return CompanyRatingCodeType.class;
       }
 
       @Override
-      protected Class<? extends ICodeType<?>> getConfiguredCodeType() {
-        return CompanyRatingCodeType.class;
+      protected String getConfiguredLabel() {
+        return TEXTS.get("CompanyRating");
       }
 
       @Override

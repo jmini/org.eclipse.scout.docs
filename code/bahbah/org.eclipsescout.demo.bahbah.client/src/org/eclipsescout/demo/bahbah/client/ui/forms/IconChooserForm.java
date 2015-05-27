@@ -37,12 +37,12 @@ public class IconChooserForm extends AbstractForm {
     return TEXTS.get("IconChangeTitle");
   }
 
-  public CancelButton getCancelButton() {
-    return getFieldByClass(CancelButton.class);
-  }
-
   public void startNew() throws ProcessingException {
     startInternal(new NewHandler());
+  }
+
+  public CancelButton getCancelButton() {
+    return getFieldByClass(CancelButton.class);
   }
 
   public IconField getIconField() {
@@ -69,15 +69,14 @@ public class IconChooserForm extends AbstractForm {
       }
 
       @Override
-      protected boolean getConfiguredTypeLoad() {
-        return true;
-      }
-
-      @Override
       protected boolean getConfiguredMandatory() {
         return true;
       }
 
+      @Override
+      protected boolean getConfiguredTypeLoad() {
+        return true;
+      }
     }
 
     @Order(20.0)
