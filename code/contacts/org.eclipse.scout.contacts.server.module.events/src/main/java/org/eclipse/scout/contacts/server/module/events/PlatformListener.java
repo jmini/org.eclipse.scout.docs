@@ -90,10 +90,10 @@ public class PlatformListener implements IPlatformListener {
       LOG.info("Database table 'EVENT' created");
 
       if (CONFIG.getPropertyValue(ConfigProperties.DatabaseAutoPopulateProperty.class)) {
-        createEventEntry("EclipseCon 2015", DateUtility.parse("09.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("12.03.2015 16:45", "dd.MM.yyyy HH:mm"), "San Francisco", "US", "https://www.eclipsecon.org/na2015/");
-        createEventEntry("JavaLand 2015", DateUtility.parse("24.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("26.03.2015 17:00", "dd.MM.yyyy HH:mm"), "Bruehl", "DE", "http://www.javaland.eu/javaland-2015/");
-        createEventEntry("EclipseCon Europe 2015", DateUtility.parse("02.11.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("05.11.2015 17:00", "dd.MM.yyyy HH:mm"), "Ludwigsburg", "DE", "https://www.eclipsecon.org/europe2015/");
-        createEventEntry("Bilbo's Party", null, null, "Shire", "NZ", null);
+        createEventEntry("Big Main Circumstances", DateUtility.parse("09.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("12.03.2015 16:45", "dd.MM.yyyy HH:mm"), "San Francisco", "US", "https://www.eclipsecon.org/na2015/");
+        createEventEntry("Eventurist Delight", DateUtility.parse("24.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("26.03.2015 17:00", "dd.MM.yyyy HH:mm"), "Bruehl", "DE", "http://www.javaland.eu/javaland-2015/");
+        createEventEntry("Eventage N Event", DateUtility.parse("02.11.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("05.11.2015 17:00", "dd.MM.yyyy HH:mm"), "Ludwigsburg", "DE", "https://www.eclipsecon.org/europe2015/");
+        createEventEntry("Prince Go Occasions", null, null, "Shire", "NZ", null);
 
         LOG.info("Database table 'EVENT' populated with sample data");
       }
@@ -116,14 +116,22 @@ public class PlatformListener implements IPlatformListener {
       LOG.info("Database table 'PARTICIPANT' created");
 
       if (CONFIG.getPropertyValue(ConfigProperties.DatabaseAutoPopulateProperty.class)) {
-        createParticipantEntry("EclipseCon Europe 2015", "Rabbit");
-        createParticipantEntry("EclipseCon Europe 2015", "Alice");
-        createParticipantEntry("JavaLand 2015", "Alice");
-        createParticipantEntry("Bilbo's Party", "Alice");
-        createParticipantEntry("Bilbo's Party", "Bilbo");
-        createParticipantEntry("Bilbo's Party", "Gandalf");
-        createParticipantEntry("EclipseCon Europe 2015", "Gandalf");
-        createParticipantEntry("Bilbo's Party", "Thorin");
+        createParticipantEntry("Eventage N Event", "Anna");
+        createParticipantEntry("Eventage N Event", "Kevon");
+        createParticipantEntry("Eventage N Event", "Melody");
+        createParticipantEntry("Eventurist Delight", "Melody");
+        createParticipantEntry("Eventurist Delight", "Adolph");
+        createParticipantEntry("Prince Go Occasions", "Kevon");
+        createParticipantEntry("Prince Go Occasions", "Melody");
+        createParticipantEntry("Prince Go Occasions", "Bart");
+        createParticipantEntry("Prince Go Occasions", "Xander");
+        createParticipantEntry("Eventage N Event", "Peter");
+        createParticipantEntry("Big Main Circumstances", "Holly");
+        createParticipantEntry("Big Main Circumstances", "Cara");
+        createParticipantEntry("Big Main Circumstances", "Kevon");
+        createParticipantEntry("Big Main Circumstances", "Lonnie");
+        createParticipantEntry("Big Main Circumstances", "John");
+        createParticipantEntry("Big Main Circumstances", "Emmie");
 
         LOG.info("Database table 'PARTICIPANT' populated with sample data");
       }
