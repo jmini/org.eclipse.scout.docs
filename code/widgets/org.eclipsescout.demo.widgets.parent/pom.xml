@@ -26,6 +26,9 @@
     <module>../org.eclipsescout.demo.widgets.client.mobile</module>
     <module>../org.eclipsescout.demo.widgets.shared</module>
     <module>../org.eclipsescout.demo.widgets.shared.old</module>
+    <module>../org.eclipsescout.demo.widgets.ui.html</module>
+    <module>../org.eclipsescout.demo.widgets.ui.html.app.dev</module>
+    <module>../org.eclipsescout.demo.widgets.u</module>
   </modules>
 
   <properties>
@@ -55,6 +58,16 @@
       <dependency>
         <groupId>org.eclipsescout.demo.widgets</groupId>
         <artifactId>org.eclipsescout.demo.widgets.shared.old</artifactId>
+        <version>5.2.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipsescout.demo.widgets</groupId>
+        <artifactId>org.eclipsescout.demo.widgets.client.old</artifactId>
+        <version>5.2.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipsescout.demo.widgets</groupId>
+        <artifactId>org.eclipsescout.demo.widgets.ui.html</artifactId>
         <version>5.2.0-SNAPSHOT</version>
       </dependency>
     </dependencies>

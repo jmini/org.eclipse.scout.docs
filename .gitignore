@@ -6,7 +6,6 @@
 
 # Package Files #
 *.jar
-*.war
 *.ear
 *.zip
 
@@ -20,6 +19,7 @@ target/
 # settings files are handled in rt-feature project and settings files should not be changed (can be enforecd with 'git add .settings -f')
 code/.project
 code/.settings
+code/**/.settings
 docs/**/.project
 docs/**/.settings
 
