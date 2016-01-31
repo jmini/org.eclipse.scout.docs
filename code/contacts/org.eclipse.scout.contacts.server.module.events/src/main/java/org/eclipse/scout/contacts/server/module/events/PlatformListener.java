@@ -17,6 +17,7 @@ import java.util.UUID;
 import org.eclipse.scout.contacts.server.ConfigProperties;
 import org.eclipse.scout.contacts.server.SuperUserRunContextProducer;
 import org.eclipse.scout.contacts.server.module.events.sql.SQLs;
+import org.eclipse.scout.contacts.server.sql.DBSetupService;
 import org.eclipse.scout.contacts.shared.module.events.person.PersonFormTabExtensionData;
 import org.eclipse.scout.contacts.shared.module.events.person.PersonTablePageDataExtension;
 import org.eclipse.scout.rt.platform.BEANS;
@@ -38,10 +39,13 @@ import org.slf4j.LoggerFactory;
 
 @Order(20)
 public class PlatformListener implements IPlatformListener {
+
   private static final Logger LOG = LoggerFactory.getLogger(PlatformListener.class);
 
-  private static final String EVENT1 = "JavaLand 2015";
-  private static final String EVENT2 = "EclipseCon Europe 2015";
+  private static final UUID EVENT1 = UUID.randomUUID();
+  private static final UUID EVENT2 = UUID.randomUUID();
+  private static final UUID EVENT3 = UUID.randomUUID();
+  private static final UUID EVENT4 = UUID.randomUUID();
 
   @Override
   public void stateChanged(PlatformEvent event) {
@@ -90,16 +94,18 @@ public class PlatformListener implements IPlatformListener {
       LOG.info("Database table 'EVENT' created");
 
       if (CONFIG.getPropertyValue(ConfigProperties.DatabaseAutoPopulateProperty.class)) {
-        createEventEntry(EVENT1, DateUtility.parse("24.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("26.03.2015 17:00", "dd.MM.yyyy HH:mm"), "Bruehl", "DE", "http://www.javaland.eu/javaland-2015/");
-        createEventEntry(EVENT2, DateUtility.parse("02.11.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("05.11.2015 17:00", "dd.MM.yyyy HH:mm"), "Ludwigsburg", "DE", "https://www.eclipsecon.org/europe2015/");
+        createEventEntry(EVENT1, "Big Main Circumstances", DateUtility.parse("09.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("12.03.2015 16:45", "dd.MM.yyyy HH:mm"), "San Francisco", "US", "https://www.eclipsecon.org/na2015/");
+        createEventEntry(EVENT2, "Eventurist Delight", DateUtility.parse("24.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("26.03.2015 17:00", "dd.MM.yyyy HH:mm"), "Bruehl", "DE", "http://www.javaland.eu/javaland-2015/");
+        createEventEntry(EVENT3, "Eventage N Event", DateUtility.parse("02.11.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("05.11.2015 17:00", "dd.MM.yyyy HH:mm"), "Ludwigsburg", "DE", "https://www.eclipsecon.org/europe2015/");
+        createEventEntry(EVENT4, "Prince Go Occasions", null, null, "Shire", "NZ", null);
 
         LOG.info("Database table 'EVENT' populated with sample data");
       }
     }
   }
 
-  private void createEventEntry(String title, Date starts, Date ends, String city, String country, String url) {
-    SQL.insert(SQLs.EVENT_INSERT_SAMPLE_DATA, new NVPair("eventId", UUID.randomUUID().toString()),
+  private void createEventEntry(UUID uuid, String title, Date starts, Date ends, String city, String country, String url) {
+    SQL.insert(SQLs.EVENT_INSERT_SAMPLE_DATA, new NVPair("eventId", uuid.toString()),
         new NVPair("title", title),
         new NVPair("starts", starts),
         new NVPair("ends", ends),
@@ -114,18 +120,31 @@ public class PlatformListener implements IPlatformListener {
       LOG.info("Database table 'PARTICIPANT' created");
 
       if (CONFIG.getPropertyValue(ConfigProperties.DatabaseAutoPopulateProperty.class)) {
-        createParticipantEntry(EVENT1, "Rabbit");
-        createParticipantEntry(EVENT1, "Alice");
-        createParticipantEntry(EVENT2, "Alice");
+        createParticipantEntry(EVENT3, DBSetupService.PERSON01);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON16);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON02);
+        createParticipantEntry(EVENT2, DBSetupService.PERSON02);
+        createParticipantEntry(EVENT2, DBSetupService.PERSON19);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON16);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON02);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON03);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON13);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON07);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON11);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON14);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON16);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON09);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON18);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON20);
 
         LOG.info("Database table 'PARTICIPANT' populated with sample data");
       }
     }
   }
 
-  private void createParticipantEntry(String eventTitle, String personFirstName) {
+  private void createParticipantEntry(UUID eventUuid, UUID personUuid) {
     SQL.insert(SQLs.PARTICIPANT_INSERT_SAMPLE_DATA,
-        new NVPair("eventTitle", eventTitle),
-        new NVPair("personFirstName", personFirstName));
+        new NVPair("eventUuid", eventUuid.toString()),
+        new NVPair("personUuid", personUuid.toString()));
   }
 }

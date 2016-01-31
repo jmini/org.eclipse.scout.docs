@@ -59,12 +59,8 @@ public interface SQLs {
       + "INTO         PARTICIPANT "
       + "            (event_id, "
       + "             person_id) "
-      + "VALUES      ((SELECT   event_id "
-      + "              FROM     EVENT "
-      + "              WHERE    title = :eventTitle), "
-      + "             (SELECT   person_id "
-      + "              FROM     PERSON "
-      + "              WHERE    first_name = :personFirstName))";
+      + "VALUES      (:eventUuid, "
+      + "             :personUuid)";
 
   String PERSON_EVENT_SELECT = ""
       + "SELECT       e.event_id, "

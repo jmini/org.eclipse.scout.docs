@@ -229,7 +229,7 @@ public interface SQLs {
       + "         country, "
       + "         url, "
       + "         logo_url) "
-      + "VALUES  (:organization_id, "
+      + "VALUES  (:organizationUuid, "
       + "         :name, "
       + "         :city, "
       + "         :country, "
@@ -248,7 +248,7 @@ public interface SQLs {
       + "          country, "
       + "          position, "
       + "          organization_id) "
-      + "VALUES   (:person_id, "
+      + "VALUES   (:personUuid, "
       + "          :firstName, "
       + "          :lastName, "
       + "          :pictureUrl, "
@@ -257,8 +257,5 @@ public interface SQLs {
       + "          :city, "
       + "          :country, "
       + "          :position, "
-      + "          (SELECT  organization_id "
-      + "           FROM    ORGANIZATION "
-      + "           WHERE   name = :organizationId)"
-      + "           )";
+      + "          :organizationUuid)";
 }
