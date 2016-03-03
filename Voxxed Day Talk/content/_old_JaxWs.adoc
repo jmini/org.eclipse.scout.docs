@@ -182,7 +182,9 @@ If your project design envisions a separate JAR module per WSDL, you simply have
 .wsimport configuration in pom.xml if working with a single WSDL file per JAR module
 [source,xml,indent=0]
 ----
-include::{codedir}/contacts/org.eclipse.scout.contacts.server.jaxws/pom.xml[tags=jaxws.pom.single-wsdl-file-per-module]
+<properties>
+  <jaxws.wsdl.file>PingWebService.wsdl<jaxws.wsdl.file> <1>
+</properties>
 ----
 <1> name of the file
 

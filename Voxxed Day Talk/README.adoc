@@ -1,0 +1,39 @@
+= Writing documentation with Asciidoctor
+Jeremie Bresson
+2016-03-02
+
+=== Slides
+link:file:///C:/develop/voxxed-neon-m5/git/org.eclipse.scout.docs/Voxxed%20Day%20Talk/content/2016-03-03_Writing%20documentation%20with%20Asciidoctor.pptx[pptx], 
+link:file:///C:/develop/voxxed-neon-m5/git/org.eclipse.scout.docs/Voxxed%20Day%20Talk/content/2016-03-03_Writing%20documentation%20with%20Asciidoctor.pdf[pdf], 
+
+=== First example
+link:content/scout_architecture/scout_architecture.html#lst-jaxws.pom.scoutversion[Example document]
+
+* link:content/_old_JaxWs.adoc[old sources]
+* link:../docs/adoc/architecture/JaxWs.adoc[new sources]
+
+=== Use JUnit Test
+link:content/scout_architecture2/scout_architecture.html#lst-ConfigProperties[Example document]
+
+* link:../docs/adoc/architecture/Platform.adoc[sources]
+* JUnit class: `ScoutConfigTest`
+
+=== Single Source
+
+* Eclipse Help (Hello World)
+* Hello World: link:content/scout_helloworld.pdf[pdf], link:content/scout_helloworld/scout_helloworld.html[html]
+
+sources:
+
+* link:../docs/build/scout_helloworld/src/docs/scout_helloworld.adoc[Sandalone Document sources]
+* link:../docs/build/eclipse_help/src/docs/tutorial_helloworld.adoc[Eclipse Help sources]
+
+=== Tools
+Chrome Demo
+
+=== Build
+Maven Demo
+
+=== GitHub
+link:content/edit_on_github.avi[video]
+

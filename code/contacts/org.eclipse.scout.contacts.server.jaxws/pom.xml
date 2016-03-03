@@ -21,28 +21,23 @@
     <relativePath>../org.eclipse.scout.contacts</relativePath>
   </parent>
 
-  <artifactId>org.eclipse.scout.contacts.server</artifactId>
+  <artifactId>org.eclipse.scout.contacts.server.jaxws</artifactId>
+
+  <!-- tag::jaxws.pom.single-wsdl-file-per-module[]-->
+  <properties>
+    <jaxws.wsdl.file>PingWebService.wsdl</jaxws.wsdl.file> <!--1-->
+  </properties>
+  <!-- end::jaxws.pom.single-wsdl-file-per-module[] -->
 
   <dependencies>
     <dependency>
       <groupId>org.eclipse.scout.rt</groupId>
-      <artifactId>org.eclipse.scout.rt.server</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.scout.contacts</groupId>
-      <artifactId>org.eclipse.scout.contacts.shared</artifactId>
+      <artifactId>org.eclipse.scout.rt.server.jaxws</artifactId>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.scout.rt</groupId>
-       <artifactId>org.eclipse.scout.rt.server.jdbc</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
