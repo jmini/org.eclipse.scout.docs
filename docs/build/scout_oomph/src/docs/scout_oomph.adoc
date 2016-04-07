@@ -1,0 +1,122 @@
+= Oomph setup for Eclipse Scout
+:doctype: article
+:author: Jeremie Bresson
+:email: scout-dev@eclipse.org
+:revnumber: {project-version}
+include::_initDoc.adoc[]
+
+//fallback for safe mode == secure:
+ifndef::imgsdir[:imgsdir: ../../../../imgs]
+ifndef::codedir[:codedir: ../../../../../code]
+ifndef::mdledir[:mdledir: ../../../../adoc]
+:experimental:
+
+Oomph (a.k.a. Eclipse Installer) a great technology to do the setup of any project into an Eclipse workspace.
+This guide describes how the Eclipse Scout project is using Oomph and how you should use it.
+
+Oomph takes care of everything: installation of the appropriate Eclipse plugin, checkout of the Repository, materialization of the project in the workspace, configuration of Eclipse and so on...
+At the end you get a workspace "ready to code".
+This way you can easily obtain a workspace to try out the Eclipse Scout Demo Application.
+An other possibility is to checkout the code in order to propose a patch.
+
+
+== Install Oomph
+
+=== Download, Start and install the Eclipse Installer
+
+Download the Eclipse Installer:
+https://wiki.eclipse.org/Eclipse_Installer
+
+NOTE: TODO this section should be extended.
+
+=== Update your Eclipse Installer
+
+If you have already installed the Eclipse Installer, you should update to the latest version.
+When you have started, click on the "Update" button near the version link.
+
+== Provision your workspace with Oomph
+
+=== Selecting Advanced Mode
+
+Project setup using Oomph Installer for Eclipse is available in "advanced mode".
+If Oomph is opened in the "simple mode" you should change the mode.
+
+Press on the "ADVANCED MODE..." entry in the side menu (see the screenshot in <<img-oomph_switch_advanced_mode>>)
+
+[[img-oomph_switch_advanced_mode, Figure]]
+.Switch to the advanced mode of Oomph
+image::{imgsdir}/oomph_switch_advanced_mode.png[]
+
+=== Product Selection
+
+[[img-oomph_product_selection, Figure]]
+.Product selection step
+image::{imgsdir}/oomph_product_selection.png[]
+
+* Select Eclipse Product as *Eclipse IDE for Eclipse Committers*
+* Select *Mars* or *Neon* as Version
+* Verify the Bundle Pool location (checkbox selected, enough disk space at the specified location, ...)
+
+=== Project Selection
+
+The [wizard]_Eclipse Importer_ contains the folder hierarchy [folder]_Eclipse Projects_, [folder]_Scout_ as shown in <<img-oomph_exiting_projects1>>.
+You can enter "Scout" in the search filter to find the project easily.
+
+[[img-oomph_exiting_projects1, Figure "Projects" Step 1]]
+.Top part of the "Projects" Step of the Importer.
+image::{imgsdir}/oomph_exiting_projects1.png[]
+
+Now, add the desired project to the list to import according to the following steps.
+
+* [1] Select the appropiate element.
+* [2] Add it to the list of projects using the btn:["Add Projects"] (down arrow) button.
+* [3] Adjust the Stream (e.g. the version) that you want to obtain.
+
+[[img-oomph_exiting_projects2, Figure "Projects" Step 2]]
+.Bottom part of the "Projects" Step of the Importer.
+image::{imgsdir}/oomph_exiting_projects2.png[]
+
+Depending on your use case, your selection will not be the same.
+
+==== Demo application (fixed version)
+
+==== Scout RT and/or Demo Application (Latest version)
+
+==== Maven-Master projects
+
+For the "Scout Demo App" project, we provide two Streams: 
+
+* The latest milestone released (called "Neon (M4 release)" by time of writing)
+* The head version (called "Neon (head)")
+
+If you are interested in the latest milestone release, the IDE will be able to fetch the Scout RT sources from Maven Central.
+If you select the head version, there is no public maven repository containing the corresponding SNAPSHOT version.
+You also need to import "Scout RT" in your workspace.
+
+Those are also the two recommended configuration:
+
+.Importing the "Neon (head)" version. "Scout Demo App" and "Scout RT" porjects.
+image:OomphProjects2.png[]
+
+.Importing the "Neon (release)" version. "Scout Demo App" project.
+image:OomphProjects1.png[]
+
+=== Variables Selection
+
+User variables are cached by Oomph (for example, choices selected previously).
+To display all variables activate the Checkbox "Show all Variables" in the bottom left corner.
+
+image:OomphVariablesSelection.png[]
+
+* Installation location rule: default good (the pattern corresponding to "Installed in a uniquely-named folder inside the root folder")
+** Installation folder name: choose a name that you will recognize: "eclipse-for-contributor-course"
+** Root Install folder: put something like `C:\Develop` or `C:\Eclipse` (or what ever you want)
+* Workspace location: default good (the pattern corresponding to "Located in a folder named 'ws' within the installation folder")
+* Git clone location rule: default good (the pattern corresponding to "Located in a folder named 'git/<repo>' within the installation folder")
+* Target Platform: default good (None because we do not used Target platform)
+* JRE 1.7 Location: put here the path to a Java 7 JRE
+* JRE 1.8 Location: put here the path to a Java 8 JRE
+* Scout Gerrit repository: select the pattern corresponding to "HTTPS (read-write, Gerrit)"
+** Eclipse Git/Gerrit user ID: put here your Gerrit user name
+* Scout Github repository: select the pattern corresponding to "HTTPS (read-write)"
+** Github user ID: put here your GitHub user ID.
