@@ -43,6 +43,8 @@ public class PlatformListener implements IPlatformListener {
 
   private static final UUID EVENT1 = UUID.randomUUID();
   private static final UUID EVENT2 = UUID.randomUUID();
+  private static final UUID EVENT3 = UUID.randomUUID();
+  private static final UUID EVENT4 = UUID.randomUUID();
 
   @Override
   public void stateChanged(PlatformEvent event) {
@@ -90,12 +92,21 @@ public class PlatformListener implements IPlatformListener {
       SQL.insert(SQLs.EVENT_CREATE_TABLE);
       LOG.info("Database table 'EVENT' created");
       if (CONFIG.getPropertyValue(ConfigProperties.DatabaseAutoPopulateProperty.class)) {
-        createEventEntry(EVENT1, "JavaLand 2015", DateUtility.parse("24.03.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("26.03.2015 17:00", "dd.MM.yyyy HH:mm"), "Bruehl", "DE", "http://www.javaland.eu/javaland-2015/");
-        createEventEntry(EVENT2, "EclipseCon Europe 2015", DateUtility.parse("02.11.2015 09:00", "dd.MM.yyyy HH:mm"), DateUtility.parse("05.11.2015 17:00", "dd.MM.yyyy HH:mm"), "Ludwigsburg", "DE", "https://www.eclipsecon.org/europe2015/");
-
+        createEventEntry(EVENT1, "Big Main Circumstances", createDateThisMonth(9, 9, 0), createDateThisMonth(12, 16, 45), "San Francisco", "US", null);
+        createEventEntry(EVENT2, "Eventurist Delight", createDateThisMonth(24, 9, 0), createDateThisMonth(26, 17, 0), "Berlin", "DE", null);
+        createEventEntry(EVENT3, "Eventage N Event", createDateThisMonth(2, 9, 0), createDateThisMonth(5, 17, 0), "Zurich", "CH", null);
+        createEventEntry(EVENT4, "Prince Go Occasions", createDateThisMonth(14, 13, 0), createDateThisMonth(14, 19, 15), "Paris", "FR", null);
         LOG.info("Database table 'EVENT' populated with sample data");
       }
     }
+  }
+
+  private static Date createDateThisMonth(int days, int hours, int minutes) {
+    Date date = DateUtility.truncDateToMonth(new Date());
+    date = DateUtility.addDays(date, days - 1);
+    date = DateUtility.addHours(date, hours);
+    date = DateUtility.addMinutes(date, minutes);
+    return date;
   }
 
   private void createEventEntry(UUID eventUuid, String title, Date starts, Date ends, String city, String country, String url) {
@@ -114,9 +125,22 @@ public class PlatformListener implements IPlatformListener {
       LOG.info("Database table 'PARTICIPANT' created");
 
       if (CONFIG.getPropertyValue(ConfigProperties.DatabaseAutoPopulateProperty.class)) {
-        createParticipantEntry(EVENT1, DBSetupService.PERSON02);
-        createParticipantEntry(EVENT1, DBSetupService.PERSON01);
-        createParticipantEntry(EVENT2, DBSetupService.PERSON01);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON01);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON16);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON02);
+        createParticipantEntry(EVENT2, DBSetupService.PERSON02);
+        createParticipantEntry(EVENT2, DBSetupService.PERSON19);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON16);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON02);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON03);
+        createParticipantEntry(EVENT4, DBSetupService.PERSON13);
+        createParticipantEntry(EVENT3, DBSetupService.PERSON07);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON11);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON14);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON16);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON09);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON18);
+        createParticipantEntry(EVENT1, DBSetupService.PERSON20);
 
         LOG.info("Database table 'PARTICIPANT' populated with sample data");
       }
