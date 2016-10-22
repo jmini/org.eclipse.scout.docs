@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.eclipse.scout.contacts.server.organization.OrganizationService;
 import org.eclipse.scout.contacts.server.sql.DatabaseSetupService;
-import org.eclipse.scout.contacts.server.sql.DerbySqlService;
 import org.eclipse.scout.contacts.shared.organization.OrganizationFormData;
 import org.eclipse.scout.rt.platform.BEANS;
 import org.eclipse.scout.rt.testing.platform.runner.RunWithSubject;
@@ -35,8 +34,8 @@ public class OrganizationServiceTest {
 
   @AfterClass
   public static void destroyDBConnections() {
-    BEANS.get(DerbySqlService.class).dropDB();
-    BEANS.get(DerbySqlService.class).destroySqlConnectionPool();
+//    BEANS.get(DerbySqlService.class).dropDB();
+//    BEANS.get(DerbySqlService.class).destroySqlConnectionPool();
   }
 
   @Before
