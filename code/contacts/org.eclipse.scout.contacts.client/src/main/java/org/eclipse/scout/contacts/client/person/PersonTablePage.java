@@ -156,7 +156,32 @@ public class PersonTablePage extends AbstractPageWithTable<PersonTablePage.Table
         form.startModify();
       }
     }
+
     // tag::linkToOrganization[]
+    @Order(20)
+    public class EditBarecodeMenu extends AbstractMenu {
+      // end::menu[]
+
+      @Override
+      protected String getConfiguredIconId() {
+        return Icons.Pencil;
+      }
+
+      // tag::menu[]
+      @Override
+      protected String getConfiguredText() {
+        return TEXTS.get("EditBarecode");
+      }
+
+      @Override
+      protected void execAction() {
+        PersonBadgeForm form = new PersonBadgeForm();
+        form.setPersonId(getPersonIdColumn().getSelectedValue());
+        form.setFirstName(getFirstNameColumn().getSelectedValue());
+        form.setLastName(getLastNameColumn().getSelectedValue());
+        form.startModify();
+      }
+    }
 
     @Order(20)
     public class NewMenu extends AbstractMenu {
