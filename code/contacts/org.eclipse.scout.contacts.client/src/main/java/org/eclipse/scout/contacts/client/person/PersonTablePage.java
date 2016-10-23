@@ -268,7 +268,7 @@ public class PersonTablePage extends AbstractPageWithTable<PersonTablePage.Table
 
       @Override
       protected int getConfiguredWidth() {
-        return 120;
+        return 100;
       }
     }
 
@@ -283,7 +283,7 @@ public class PersonTablePage extends AbstractPageWithTable<PersonTablePage.Table
 
       @Override
       protected int getConfiguredWidth() {
-        return 120;
+        return 140;
       }
 
       @Override // <1>

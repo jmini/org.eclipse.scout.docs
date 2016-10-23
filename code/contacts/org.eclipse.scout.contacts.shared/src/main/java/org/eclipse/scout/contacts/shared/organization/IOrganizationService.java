@@ -26,4 +26,6 @@ public interface IOrganizationService extends IService {
   OrganizationFormData load(OrganizationFormData formData);
 
   OrganizationFormData store(OrganizationFormData formData);
+
+  OrganizationOverviewFormData loadOverview(OrganizationOverviewFormData formData);
 }

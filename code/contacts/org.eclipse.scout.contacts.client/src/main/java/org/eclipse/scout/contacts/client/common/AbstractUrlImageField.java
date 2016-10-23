@@ -47,6 +47,10 @@ public class AbstractUrlImageField extends AbstractImageField {
   }
   // end::template[]
 
+  protected boolean getConfiguredEditURLMenuVisible() {
+    return true;
+  }
+
   @Override
   protected String getConfiguredImageId() {
     return Icons.Person;
@@ -55,6 +59,11 @@ public class AbstractUrlImageField extends AbstractImageField {
   // tag::menu[]
   @Order(10)
   public class EditURLMenu extends AbstractMenu {
+
+    @Override
+    protected void execInitAction() {
+      setVisible(getConfiguredEditURLMenuVisible());
+    }
 
     @Override
     protected String getConfiguredText() {

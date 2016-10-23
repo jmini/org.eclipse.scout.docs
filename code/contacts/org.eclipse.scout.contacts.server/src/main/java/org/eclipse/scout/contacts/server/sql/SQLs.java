@@ -15,6 +15,46 @@ package org.eclipse.scout.contacts.server.sql;
 public interface SQLs {
   //end::organizationListing[]
 
+  String ORGANIZATION_INSERT_SAMPLE_DATA = ""
+      + "INSERT   INTO ORGANIZATION "
+      + "        (organization_id, "
+      + "         name, "
+      + "         city, "
+      + "         country, "
+      + "         url, "
+      + "         logo_url) "
+      + "VALUES  (:organization_id, "
+      + "         :name, "
+      + "         :city, "
+      + "         :country, "
+      + "         :url, "
+      + "         :logoUrl)";
+
+  String PERSON_INSERT_SAMPLE_DATA = ""
+      + "INSERT   INTO PERSON "
+      + "         (person_id, "
+      + "          first_name, "
+      + "          last_name, "
+      + "          email, "
+      + "          picture_url, "
+      + "          date_of_birth, "
+      + "          gender, "
+      + "          city, "
+      + "          country, "
+      + "          position, "
+      + "          organization_id) "
+      + "VALUES   (:person_id, "
+      + "          :firstName, "
+      + "          :lastName, "
+      + "          :email, "
+      + "          :pictureUrl, "
+      + "          :dob, "
+      + "          :gender, "
+      + "          :city, "
+      + "          :country, "
+      + "          :position, "
+      + "          :organizationId) ";
+
   String SELECT_TABLE_NAMES = ""
       + "SELECT   UPPER(tablename) "
       + "FROM     sys.systables "
@@ -131,6 +171,16 @@ public interface SQLs {
       + "         :addressBox.city, "
       + "         :addressBox.country, "
       + "         :notesBox.notes";
+
+  String ORGANIZATION_OVERVIEW_SELECT = ""
+      + "SELECT   name, "
+      + "         logo_url, "
+      + "         url "
+      + "FROM     ORGANIZATION "
+      + "WHERE    organization_id = :organizationId "
+      + "INTO     :name, "
+      + "         :picture.url, "
+      + "         :homepage";
 
   String ORGANIZATION_UPDATE = ""
       + "UPDATE   ORGANIZATION "

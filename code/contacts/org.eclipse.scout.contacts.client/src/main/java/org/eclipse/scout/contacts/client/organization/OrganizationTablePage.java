@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.scout.contacts.client.organization;
 
+import org.eclipse.scout.contacts.client.ClientSession;
 import org.eclipse.scout.contacts.client.Icons;
 import org.eclipse.scout.contacts.client.common.AbstractEditMenu;
 import org.eclipse.scout.contacts.client.common.AbstractNewMenu;
@@ -17,10 +18,12 @@ import org.eclipse.scout.contacts.client.common.CountryLookupCall;
 import org.eclipse.scout.contacts.shared.organization.IOrganizationService;
 import org.eclipse.scout.contacts.shared.organization.OrganizationTablePageData;
 import org.eclipse.scout.rt.client.dto.PageData;
+import org.eclipse.scout.rt.client.ui.action.menu.AbstractMenu;
 import org.eclipse.scout.rt.client.ui.basic.table.AbstractTable;
 import org.eclipse.scout.rt.client.ui.basic.table.ITableRow;
 import org.eclipse.scout.rt.client.ui.basic.table.columns.AbstractSmartColumn;
 import org.eclipse.scout.rt.client.ui.basic.table.columns.AbstractStringColumn;
+import org.eclipse.scout.rt.client.ui.desktop.OpenUriAction;
 import org.eclipse.scout.rt.client.ui.desktop.outline.pages.AbstractPageWithTable;
 import org.eclipse.scout.rt.client.ui.desktop.outline.pages.IPage;
 import org.eclipse.scout.rt.client.ui.form.FormEvent;
@@ -208,6 +211,26 @@ public class OrganizationTablePage extends AbstractPageWithTable<OrganizationTab
         });
 
         form.startNew();
+      }
+    }
+
+    @Order(3000)
+    public class ViewExternalAppMenu extends AbstractMenu {
+
+      @Override
+      protected String getConfiguredIconId() {
+        return Icons.CaretRight;
+      }
+
+      @Override
+      protected String getConfiguredText() {
+        return TEXTS.get("ViewExternalApp");
+      }
+
+      @Override
+      protected void execAction() {
+        String url = "http://localhost/extapp/" + getOrganizationIdColumn().getSelectedValue() + ".html";
+        ClientSession.get().getDesktop().openUri(url, OpenUriAction.NEW_WINDOW);
       }
     }
     // tag::PageInit[]

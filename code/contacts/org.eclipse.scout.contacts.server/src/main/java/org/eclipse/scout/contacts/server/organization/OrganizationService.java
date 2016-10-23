@@ -16,6 +16,7 @@ import org.eclipse.scout.contacts.server.sql.SQLs;
 import org.eclipse.scout.contacts.shared.organization.IOrganizationService;
 import org.eclipse.scout.contacts.shared.organization.OrganizationCreatePermission;
 import org.eclipse.scout.contacts.shared.organization.OrganizationFormData;
+import org.eclipse.scout.contacts.shared.organization.OrganizationOverviewFormData;
 import org.eclipse.scout.contacts.shared.organization.OrganizationReadPermission;
 import org.eclipse.scout.contacts.shared.organization.OrganizationTablePageData;
 import org.eclipse.scout.contacts.shared.organization.OrganizationUpdatePermission;
@@ -85,6 +86,17 @@ public class OrganizationService implements IOrganizationService {
     return formData;
   }
   //tag::getTableData[]
+
+  @Override
+  public OrganizationOverviewFormData loadOverview(OrganizationOverviewFormData formData) {
+    if (!ACCESS.check(new OrganizationReadPermission())) {
+      throw new VetoException(TEXTS.get("InsufficientPrivileges"));
+    }
+
+    SQL.selectInto(SQLs.ORGANIZATION_OVERVIEW_SELECT, formData);
+
+    return formData;
+  }
 }
 //end::getTableData[]
 //end::all[]

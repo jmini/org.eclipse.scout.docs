@@ -200,4 +200,32 @@ public interface SQLs {
   String PARTICIPANT_DROP_TABLE = "DROP TABLE PARTICIPANT";
 
   String EVENT_DROP_TABLE = "DROP TABLE EVENT";
+
+  String EVENT_INSERT_SAMPLE_DATA = ""
+      + "INSERT       "
+      + "INTO         EVENT "
+      + "            (event_id, "
+      + "             title, "
+      + "             date_start, "
+      + "             date_end, "
+      + "             city, "
+      + "             country, "
+      + "             url) "
+      + "VALUES      (:eventId, "
+      + "             :title, "
+      + "             :starts, "
+      + "             :ends, "
+      + "             :city, "
+      + "             :country, "
+      + "             :url)";
+
+  String PARTICIPANT_INSERT_SAMPLE_DATA = ""
+      + "INSERT       "
+      + "INTO         PARTICIPANT "
+      + "            (event_id, "
+      + "             person_id) "
+      + "VALUES      ((SELECT   event_id "
+      + "              FROM     EVENT "
+      + "              WHERE    title = :eventTitle), "
+      + "             :personId)";
 }
