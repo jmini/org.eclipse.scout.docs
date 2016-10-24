@@ -45,15 +45,6 @@
     </dependency>
 	<!-- tag::Derby[] -->
 	<!-- database related dependencies --> <!--1-->
-<!--     <dependency> -->
-<!--       <groupId>org.eclipse.scout.rt</groupId> -->
-<!--       <artifactId>org.eclipse.scout.rt.server.jdbc</artifactId> -->
-<!--     </dependency> -->
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <version>10.11.1.1</version>
-    </dependency>
   </dependencies>
   <!-- end::Derby[] -->
 </project>
