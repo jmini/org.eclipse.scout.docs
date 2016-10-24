@@ -32,6 +32,6 @@ public class PersonLookupService extends AbstractDatasourceLookupService<PersonF
 
   @Override
   protected String provideText(PersonFormData formData) {
-    return StringUtility.join(" ", formData.getFirstName().getValue(), formData.getLastName());
+    return StringUtility.join(" ", formData.getFirstName().getValue(), formData.getLastName().getValue());
   }
 }
