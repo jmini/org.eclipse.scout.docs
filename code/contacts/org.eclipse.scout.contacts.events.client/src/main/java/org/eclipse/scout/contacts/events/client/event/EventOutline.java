@@ -13,6 +13,7 @@ package org.eclipse.scout.contacts.events.client.event;
 import java.util.List;
 
 import org.eclipse.scout.contacts.events.client.Icons;
+import org.eclipse.scout.contacts.events.client.location.LocationTablePage;
 import org.eclipse.scout.rt.client.ui.desktop.outline.AbstractOutline;
 import org.eclipse.scout.rt.client.ui.desktop.outline.pages.IPage;
 import org.eclipse.scout.rt.shared.TEXTS;
@@ -28,6 +29,7 @@ public class EventOutline extends AbstractOutline {
   protected void execCreateChildPages(List<IPage<?>> pageList) {
     EventTablePage eventsTablePage = new EventTablePage();
     pageList.add(eventsTablePage);
+    pageList.add(new LocationTablePage());
   }
 
   @Override
