@@ -10,13 +10,28 @@
  ******************************************************************************/
 package org.eclipse.scout.contacts.server.person;
 
+import org.eclipse.scout.contacts.server.datasource.AbstractDataStore;
 import org.eclipse.scout.contacts.server.datasource.AbstractDatasourceLookupService;
+import org.eclipse.scout.contacts.server.datasource.DatastorePerson;
 import org.eclipse.scout.contacts.shared.person.IPersonLookupService;
+import org.eclipse.scout.contacts.shared.person.PersonFormData;
+import org.eclipse.scout.rt.platform.BEANS;
+import org.eclipse.scout.rt.platform.util.StringUtility;
 
-public class PersonLookupService extends AbstractDatasourceLookupService<String> implements IPersonLookupService {
+public class PersonLookupService extends AbstractDatasourceLookupService<PersonFormData> implements IPersonLookupService {
 
-//  @Override
-//  protected String getConfiguredSqlSelect() {
-//    return SQLs.PERSON_LOOKUP;
-//  }
+  @Override
+  protected AbstractDataStore<PersonFormData> provideDataStore() {
+    return BEANS.get(DatastorePerson.class);
+  }
+
+  @Override
+  protected String provideKey(PersonFormData formData) {
+    return formData.getPersonId();
+  }
+
+  @Override
+  protected String provideText(PersonFormData formData) {
+    return StringUtility.join(" ", formData.getFirstName().getValue(), formData.getLastName());
+  }
 }

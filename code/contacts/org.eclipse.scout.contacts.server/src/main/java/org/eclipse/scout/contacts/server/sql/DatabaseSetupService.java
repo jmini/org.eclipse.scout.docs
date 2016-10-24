@@ -83,12 +83,12 @@ public class DatabaseSetupService implements IDataStoreService {
       LOG.info("Datastore 'ORGANIZATION' created");
 
       if (CONFIG.getPropertyValue(DatabaseProperties.DatabaseAutoPopulateProperty.class)) {
-        datastore.store(createOrganizationFormData(ORGANISATION1, "Alphatom", "London", "GB", "https://alphat.oi/", "http://localhost:8082/imgs/company/alphatom.png"));
-        datastore.store(createOrganizationFormData(ORGANISATION2, "Bignix", "Birmingham", "GB", "https://bignix.com/", "http://localhost:8082/imgs/company/bignix.png"));
-        datastore.store(createOrganizationFormData(ORGANISATION3, "Flextexon", "Paris", "FR", "https://flextexon.com/", "http://localhost:8082/imgs/company/flextexon.png"));
-        datastore.store(createOrganizationFormData(ORGANISATION4, "Hottrax", "New-York", "US", "https://hottrax.fr/", "http://localhost:8082/imgs/company/hottrax.png"));
-        datastore.store(createOrganizationFormData(ORGANISATION5, "Strongnix", "Boston", "US", "https://strongnix.net/", "http://localhost:8082/imgs/company/strongnix.png"));
-        datastore.store(createOrganizationFormData(ORGANISATION6, "Techdexon", "New-York", "US", "https://techdexon.com/", "http://localhost:8082/imgs/company/techdexon.png"));
+        datastore.store(createOrganizationFormData(ORGANISATION1, "Alphatom", "London", "GB", "https://alphat.oi/", "http://localhost:8082/res/imgs/company/alphatom.png"));
+        datastore.store(createOrganizationFormData(ORGANISATION2, "Bignix", "Birmingham", "GB", "https://bignix.com/", "http://localhost:8082/res/imgs/company/bignix.png"));
+        datastore.store(createOrganizationFormData(ORGANISATION3, "Flextexon", "Paris", "FR", "https://flextexon.com/", "http://localhost:8082/res/imgs/company/flextexon.png"));
+        datastore.store(createOrganizationFormData(ORGANISATION4, "Hottrax", "New-York", "US", "https://hottrax.fr/", "http://localhost:8082/res/imgs/company/hottrax.png"));
+        datastore.store(createOrganizationFormData(ORGANISATION5, "Strongnix", "Boston", "US", "https://strongnix.net/", "http://localhost:8082/res/imgs/company/strongnix.png"));
+        datastore.store(createOrganizationFormData(ORGANISATION6, "Techdexon", "New-York", "US", "https://techdexon.com/", "http://localhost:8082/res/imgs/company/techdexon.png"));
         LOG.info("Datastore 'ORGANIZATION' populated with sample data");
       }
     }
@@ -111,26 +111,26 @@ public class DatabaseSetupService implements IDataStoreService {
       LOG.info("Database table 'PERSON' created");
 
       if (CONFIG.getPropertyValue(DatabaseProperties.DatabaseAutoPopulateProperty.class)) {
-        datastore.store(createPersonFormData(PERSON01, "Anna", "Mills", "M", "anna.mills@mail.com", null, "http://localhost:8082/imgs/person/1.jpg", "Arlington", "US", null, ORGANISATION3));
-        datastore.store(createPersonFormData(PERSON02, "Melody", "Bergnaum", "F", "mbergnaum@mail.com", null, "http://localhost:8082/imgs/person/2.jpg", "Portland", "US", null, ORGANISATION6));
-        datastore.store(createPersonFormData(PERSON03, "Bart", "Zulauf", "M", "bart@zulauf.com", null, "http://localhost:8082/imgs/person/3.jpg", "Arlington", "US", null, ORGANISATION3));
-        datastore.store(createPersonFormData(PERSON04, "Wilmer", "Fay", "M", "wil65@email.com", null, "http://localhost:8082/imgs/person/4.jpg", "Virginia Beach", "US", null, ORGANISATION4));
-        datastore.store(createPersonFormData(PERSON05, "Axel", "Hahn", "M", "a.hahn@company.com", null, "http://localhost:8082/imgs/person/5.jpg", "Chandler", "US", null, ORGANISATION4));
-        datastore.store(createPersonFormData(PERSON06, "Hermina", "Borer", "F", "herborer@adomain.net", null, "http://localhost:8082/imgs/person/6.jpg", "Birmingham", "GB", null, ORGANISATION5));
-        datastore.store(createPersonFormData(PERSON07, "Peter", "Crist", "M", "pchrist@me.com", null, "http://localhost:8082/imgs/person/7.jpg", "Portland", "US", null, ORGANISATION1));
-        datastore.store(createPersonFormData(PERSON08, "Daisha", "Rohan", "F", "", null, "http://localhost:8082/imgs/person/8.jpg", "London", "GB", null, ORGANISATION2));
-        datastore.store(createPersonFormData(PERSON09, "Lonnie", "Marks", "M", "lmarks@mail.org", null, "http://localhost:8082/imgs/person/9.jpg", "London", "GB", null, ORGANISATION5));
-        datastore.store(createPersonFormData(PERSON10, "Evert", "Johnson", "M", "evert@me.com", null, "http://localhost:8082/imgs/person/10.jpg", "Birmingham", "GB", null, ORGANISATION1));
-        datastore.store(createPersonFormData(PERSON11, "Holly", "Beier", "M", "holly@beier.net", null, "http://localhost:8082/imgs/person/11.jpg", "London", "GB", null, ORGANISATION2));
-        datastore.store(createPersonFormData(PERSON12, "Grant", "Reichel", "M", "g_reichel@themail.com", null, "http://localhost:8082/imgs/person/12.jpg", "London", "GB", null, ORGANISATION2));
-        datastore.store(createPersonFormData(PERSON13, "Xander", "Spinka", "M", "spinka@oleta.us", null, "http://localhost:8082/imgs/person/13.jpg", "Portland", "US", null, ORGANISATION2));
-        datastore.store(createPersonFormData(PERSON14, "Cara", "Turcotte", "F", "cara@cara.us", null, "http://localhost:8082/imgs/person/14.jpg", "Virginia Beach", "US", null, ORGANISATION3));
-        datastore.store(createPersonFormData(PERSON15, "Jade", "McLaughlin", "F", "jade@mcl.com", null, "http://localhost:8082/imgs/person/15.jpg", "Portland", "US", null, ORGANISATION5));
-        datastore.store(createPersonFormData(PERSON16, "Kevon", "Funk", "M", "kev@funk.de", null, "http://localhost:8082/imgs/person/16.jpg", "London", "GB", null, ORGANISATION1));
+        datastore.store(createPersonFormData(PERSON01, "Anna", "Mills", "M", "anna.mills@mail.com", null, "http://localhost:8082/res/imgs/person/1.jpg", "Arlington", "US", null, ORGANISATION3));
+        datastore.store(createPersonFormData(PERSON02, "Melody", "Bergnaum", "F", "mbergnaum@mail.com", null, "http://localhost:8082/res/imgs/person/2.jpg", "Portland", "US", null, ORGANISATION6));
+        datastore.store(createPersonFormData(PERSON03, "Bart", "Zulauf", "M", "bart@zulauf.com", null, "http://localhost:8082/res/imgs/person/3.jpg", "Arlington", "US", null, ORGANISATION3));
+        datastore.store(createPersonFormData(PERSON04, "Wilmer", "Fay", "M", "wil65@email.com", null, "http://localhost:8082/res/imgs/person/4.jpg", "Virginia Beach", "US", null, ORGANISATION4));
+        datastore.store(createPersonFormData(PERSON05, "Axel", "Hahn", "M", "a.hahn@company.com", null, "http://localhost:8082/res/imgs/person/5.jpg", "Chandler", "US", null, ORGANISATION4));
+        datastore.store(createPersonFormData(PERSON06, "Hermina", "Borer", "F", "herborer@adomain.net", null, "http://localhost:8082/res/imgs/person/6.jpg", "Birmingham", "GB", null, ORGANISATION5));
+        datastore.store(createPersonFormData(PERSON07, "Peter", "Crist", "M", "pchrist@me.com", null, "http://localhost:8082/res/imgs/person/7.jpg", "Portland", "US", null, ORGANISATION1));
+        datastore.store(createPersonFormData(PERSON08, "Daisha", "Rohan", "F", "", null, "http://localhost:8082/res/imgs/person/8.jpg", "London", "GB", null, ORGANISATION2));
+        datastore.store(createPersonFormData(PERSON09, "Lonnie", "Marks", "M", "lmarks@mail.org", null, "http://localhost:8082/res/imgs/person/9.jpg", "London", "GB", null, ORGANISATION5));
+        datastore.store(createPersonFormData(PERSON10, "Evert", "Johnson", "M", "evert@me.com", null, "http://localhost:8082/res/imgs/person/10.jpg", "Birmingham", "GB", null, ORGANISATION1));
+        datastore.store(createPersonFormData(PERSON11, "Holly", "Beier", "M", "holly@beier.net", null, "http://localhost:8082/res/imgs/person/11.jpg", "London", "GB", null, ORGANISATION2));
+        datastore.store(createPersonFormData(PERSON12, "Grant", "Reichel", "M", "g_reichel@themail.com", null, "http://localhost:8082/res/imgs/person/12.jpg", "London", "GB", null, ORGANISATION2));
+        datastore.store(createPersonFormData(PERSON13, "Xander", "Spinka", "M", "spinka@oleta.us", null, "http://localhost:8082/res/imgs/person/13.jpg", "Portland", "US", null, ORGANISATION2));
+        datastore.store(createPersonFormData(PERSON14, "Cara", "Turcotte", "F", "cara@cara.us", null, "http://localhost:8082/res/imgs/person/14.jpg", "Virginia Beach", "US", null, ORGANISATION3));
+        datastore.store(createPersonFormData(PERSON15, "Jade", "McLaughlin", "F", "jade@mcl.com", null, "http://localhost:8082/res/imgs/person/15.jpg", "Portland", "US", null, ORGANISATION5));
+        datastore.store(createPersonFormData(PERSON16, "Kevon", "Funk", "M", "kev@funk.de", null, "http://localhost:8082/res/imgs/person/16.jpg", "London", "GB", null, ORGANISATION1));
         datastore.store(createPersonFormData(PERSON17, "Pearlie", "Hammes", "F", "pearlie@email.net", null, null, "Virginia Beach", "US", null, ORGANISATION3));
-        datastore.store(createPersonFormData(PERSON18, "John", "Berge", "M", "john89@mail.com", null, "http://localhost:8082/imgs/person/18.jpg", "Arlington", "US", null, ORGANISATION3));
-        datastore.store(createPersonFormData(PERSON19, "Adolph", "Maggio", "M", "", null, "http://localhost:8082/imgs/person/19.jpg", "London", "GB", null, ORGANISATION1));
-        datastore.store(createPersonFormData(PERSON20, "Emmie", "Parisian", "F", "emmie_parisian@email.net", null, null, "Chandler", "US", null, ORGANISATION2));
+        datastore.store(createPersonFormData(PERSON18, "John", "Berge", "M", "john89@mail.com", null, "http://localhost:8082/res/imgs/person/18.jpg", "Arlington", "US", null, ORGANISATION3));
+        datastore.store(createPersonFormData(PERSON19, "Adolph", "Maggio", "M", "", null, "http://localhost:8082/res/imgs/person/19.jpg", "London", "GB", null, ORGANISATION1));
+        datastore.store(createPersonFormData(PERSON20, "Emmie", "Parisian", "F", "emmie_parisian@email.net", null, "http://localhost:8082/res/imgs/person/20.jpg", "Chandler", "US", null, ORGANISATION2));
 
         // tag::service[]
         LOG.info("Database table 'PERSON' populated with sample data");

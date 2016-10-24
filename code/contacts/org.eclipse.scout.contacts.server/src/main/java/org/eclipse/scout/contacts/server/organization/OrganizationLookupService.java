@@ -10,15 +10,28 @@
  ******************************************************************************/
 package org.eclipse.scout.contacts.server.organization;
 
+import org.eclipse.scout.contacts.server.datasource.AbstractDataStore;
 import org.eclipse.scout.contacts.server.datasource.AbstractDatasourceLookupService;
+import org.eclipse.scout.contacts.server.datasource.DatastoreOrganization;
 import org.eclipse.scout.contacts.shared.organization.IOrganizationLookupService;
+import org.eclipse.scout.contacts.shared.organization.OrganizationFormData;
+import org.eclipse.scout.rt.platform.BEANS;
 
 //tag::all[]
-public class OrganizationLookupService extends AbstractDatasourceLookupService<String> implements IOrganizationLookupService {
+public class OrganizationLookupService extends AbstractDatasourceLookupService<OrganizationFormData> implements IOrganizationLookupService {
 
-//  @Override
-//  protected String getConfiguredSqlSelect() {
-//    return SQLs.ORGANIZATION_LOOKUP; // <1>
-//  }
+  @Override
+  protected AbstractDataStore<OrganizationFormData> provideDataStore() {
+    return BEANS.get(DatastoreOrganization.class);
+  }
+
+  @Override
+  protected String provideKey(OrganizationFormData formData) {
+    return formData.getOrganizationId();
+  }
+
+  @Override
+  protected String provideText(OrganizationFormData formData) {
+    return formData.getName().getValue();
+  }
 }
-//end::all[]
