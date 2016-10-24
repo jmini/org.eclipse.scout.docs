@@ -12,7 +12,7 @@ package org.eclipse.scout.contacts.server.person;
 
 import java.util.UUID;
 
-import org.eclipse.scout.contacts.server.sql.SQLs;
+import org.eclipse.scout.contacts.server.datasource.DatastorePerson;
 import org.eclipse.scout.contacts.shared.person.IPersonService;
 import org.eclipse.scout.contacts.shared.person.PersonCreatePermission;
 import org.eclipse.scout.contacts.shared.person.PersonFormData;
@@ -20,10 +20,9 @@ import org.eclipse.scout.contacts.shared.person.PersonReadPermission;
 import org.eclipse.scout.contacts.shared.person.PersonSearchFormData;
 import org.eclipse.scout.contacts.shared.person.PersonTablePageData;
 import org.eclipse.scout.contacts.shared.person.PersonUpdatePermission;
+import org.eclipse.scout.rt.platform.BEANS;
 import org.eclipse.scout.rt.platform.exception.VetoException;
-import org.eclipse.scout.rt.platform.holders.NVPair;
 import org.eclipse.scout.rt.platform.util.StringUtility;
-import org.eclipse.scout.rt.server.jdbc.SQL;
 import org.eclipse.scout.rt.shared.TEXTS;
 import org.eclipse.scout.rt.shared.services.common.jdbc.SearchFilter;
 import org.eclipse.scout.rt.shared.services.common.security.ACCESS;
@@ -37,38 +36,30 @@ public class PersonService implements IPersonService {
   public PersonTablePageData getPersonTableData(SearchFilter filter, String organizationId) {
     PersonTablePageData pageData = new PersonTablePageData();
     PersonSearchFormData searchData = (PersonSearchFormData) filter.getFormData();
-    StringBuilder sql = new StringBuilder();
 
-    sql.append(SQLs.PERSON_PAGE_SELECT);
     // end::getTableData[]
     // tag::addOrganizationCriteria[]
-    sql.append(" WHERE 1 = 1 ");
-    addToWhere(sql, organizationId, "organization_id", "organizationId");
+//    sql.append(" WHERE 1 = 1 ");
+//    addToWhere(sql, organizationId, "organization_id", "organizationId");
     // end::addOrganizationCriteria[]
 
-    if (searchData != null) {
-      addToWhere(sql, searchData.getFirstName().getValue(), "first_name", "firstName");
-      addToWhere(sql, searchData.getLastName().getValue(), "last_name", "lastName");
-      addToWhere(sql, searchData.getLocation().getCity().getValue(), "city", "location.city");
-      addToWhere(sql, searchData.getLocation().getCountry().getValue(), "country", "location.country");
-      addToWhere(sql, searchData.getOrganization().getValue(), "organization_id", "organization");
-    }
-
+//    if (searchData != null) {
+//      addToWhere(sql, searchData.getFirstName().getValue(), "first_name", "firstName");
+//      addToWhere(sql, searchData.getLastName().getValue(), "last_name", "lastName");
+//      addToWhere(sql, searchData.getLocation().getCity().getValue(), "city", "location.city");
+//      addToWhere(sql, searchData.getLocation().getCountry().getValue(), "country", "location.country");
+//      addToWhere(sql, searchData.getOrganization().getValue(), "organization_id", "organization");
+//    }
     // tag::getTableData[]
-    sql.append(SQLs.PERSON_PAGE_DATA_SELECT_INTO);
 
-    SQL.selectInto(sql.toString(), searchData, new NVPair("organizationId", organizationId), new NVPair("page", pageData));
+    DatastorePerson datastore = BEANS.get(DatastorePerson.class);
+    datastore.loadAllInto(pageData, organizationId);
 
     return pageData;
   }
   // end::getTableData[]
   // tag::addOrganizationCriteria[]
 
-  protected void addToWhere(StringBuilder sqlWhere, String fieldValue, String sqlAttribute, String searchAttribute) {
-    if (StringUtility.hasText(fieldValue)) {
-      sqlWhere.append(String.format(SQLs.AND_LIKE_CAUSE, sqlAttribute, searchAttribute));
-    }
-  }
   // end::addOrganizationCriteria[]
 
   //tag::all[]
@@ -83,7 +74,8 @@ public class PersonService implements IPersonService {
       formData.setPersonId(UUID.randomUUID().toString());
     }
 
-    SQL.insert(SQLs.PERSON_INSERT, formData); // <1>
+    DatastorePerson datastore = BEANS.get(DatastorePerson.class);
+    datastore.store(formData);
 
     return store(formData); // <2>
   }
@@ -94,9 +86,8 @@ public class PersonService implements IPersonService {
       throw new VetoException(TEXTS.get("InsufficientPrivileges"));
     }
 
-    SQL.selectInto(SQLs.PERSON_SELECT, formData); // <3>
-
-    return formData;
+    DatastorePerson datastore = BEANS.get(DatastorePerson.class);
+    return datastore.load(formData);
   }
 
   @Override
@@ -105,7 +96,8 @@ public class PersonService implements IPersonService {
       throw new VetoException(TEXTS.get("InsufficientPrivileges"));
     }
 
-    SQL.update(SQLs.PERSON_UPDATE, formData); // <4>
+    DatastorePerson datastore = BEANS.get(DatastorePerson.class);
+    datastore.store(formData);
 
     return formData;
   }

@@ -18,7 +18,9 @@ import org.eclipse.scout.contacts.events.client.person.PersonChooserForm.MainBox
 import org.eclipse.scout.contacts.events.client.person.PersonChooserForm.MainBox.OkButton;
 import org.eclipse.scout.contacts.events.client.person.PersonChooserForm.MainBox.PersonBox;
 import org.eclipse.scout.contacts.events.client.person.PersonChooserForm.MainBox.PersonBox.PersonField;
+import org.eclipse.scout.contacts.events.shared.person.PersonChooserFormData;
 import org.eclipse.scout.contacts.shared.person.PersonLookupCall;
+import org.eclipse.scout.rt.client.dto.FormData;
 import org.eclipse.scout.rt.client.ui.form.AbstractForm;
 import org.eclipse.scout.rt.client.ui.form.AbstractFormHandler;
 import org.eclipse.scout.rt.client.ui.form.fields.button.AbstractCancelButton;
@@ -30,9 +32,11 @@ import org.eclipse.scout.rt.shared.TEXTS;
 import org.eclipse.scout.rt.shared.services.lookup.ILookupCall;
 import org.eclipse.scout.rt.shared.services.lookup.ILookupRow;
 
+@FormData(value = PersonChooserFormData.class, sdkCommand = FormData.SdkCommand.CREATE)
 public class PersonChooserForm extends AbstractForm {
 
   private List<String> filteredPersons = new ArrayList<>();
+  private String eventId;
 
   public PersonChooserForm() {
     super();
@@ -118,5 +122,15 @@ public class PersonChooserForm extends AbstractForm {
 
   public void setFilteredPersons(List<String> filteredPersons) {
     this.filteredPersons = filteredPersons;
+  }
+
+  @FormData
+  public String getEventId() {
+    return eventId;
+  }
+
+  @FormData
+  public void setEventId(String eventId) {
+    this.eventId = eventId;
   }
 }

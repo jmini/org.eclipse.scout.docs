@@ -10,14 +10,13 @@
  ******************************************************************************/
 package org.eclipse.scout.contacts.server.person;
 
-import org.eclipse.scout.contacts.server.sql.SQLs;
+import org.eclipse.scout.contacts.server.datasource.AbstractDatasourceLookupService;
 import org.eclipse.scout.contacts.shared.person.IPersonLookupService;
-import org.eclipse.scout.rt.server.jdbc.lookup.AbstractSqlLookupService;
 
-public class PersonLookupService extends AbstractSqlLookupService<String> implements IPersonLookupService {
+public class PersonLookupService extends AbstractDatasourceLookupService<String> implements IPersonLookupService {
 
-  @Override
-  protected String getConfiguredSqlSelect() {
-    return SQLs.PERSON_LOOKUP;
-  }
+//  @Override
+//  protected String getConfiguredSqlSelect() {
+//    return SQLs.PERSON_LOOKUP;
+//  }
 }
